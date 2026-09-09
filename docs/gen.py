@@ -220,7 +220,7 @@ pages['index'] = dict(
       </div>
       <div class="hero-feit">
         <div><strong><span class="teller" data-sinds="1996-01-01">0</span> dagen</strong>aan het werk bij Nike, sinds 1996</div>
-        <div><strong>±11 medewerkers</strong>elke dag op één site</div>
+        <div><strong>7 diensten</strong>techniek en facility, één aanspreekpunt</div>
         <div><strong>Meerhout</strong>Kempen, België</div>
       </div>
     </div>
@@ -274,11 +274,11 @@ pages['index'] = dict(
     <div>
       <p class="label">Ons verhaal</p>
       <h2>Begonnen met een deurklink.</h2>
-      <p class="lead" style="margin-top:16px">In 1996 herstelde Geert Vos als contractor een deur en een deurklink bij Nike. Vandaag zijn we daar nog altijd elke dag, met een volledig team van ongeveer elf medewerkers.</p>
+      <p class="lead" style="margin-top:16px">In 1996 herstelde Geert Vos als contractor een deur en een deurklink bij Nike. Vandaag zijn we daar nog altijd elke dag, met een volledig team.</p>
       <p style="margin-top:16px"><a class="btn btn-lijn" href="/ons-verhaal/">Lees ons verhaal</a> <a class="btn btn-lijn" href="/werken-bij/" style="margin-left:8px">Werken bij Geert Vos</a></p>
       <div class="feiten">
         <div><strong>1996</strong>gestart bij Nike</div>
-        <div><strong>±11</strong>medewerkers per dag</div>
+        <div><strong>2024</strong>tweede pijler: techniekers bij andere bedrijven</div>
         <div><strong>300</strong>palletplaatsen</div>
       </div>
     </div>
@@ -691,7 +691,7 @@ pages['diensten'] = dict(
 pages['ons-verhaal'] = dict(
   extra=schema('ons-verhaal', 'Ons verhaal'),
   title='Ons verhaal: sinds 1996 bij Nike | BV Geert Vos, Meerhout',
-  desc='Begonnen in 1996 met een deur en een deurklink bij Nike. Vandaag elke dag elf medewerkers ter plaatse, sinds 2024 ook elektriciens en mechaniciens elders.',
+  desc='Begonnen in 1996 met een deur en een deurklink bij Nike. Vandaag elke dag een volledig team ter plaatse, sinds 2024 ook elektriciens en mechaniciens elders.',
   body=kop('Sinds 1996', 'Ons verhaal', 'Het begon ongeveer dertig jaar geleden met een kleine opdracht. Vandaag is het een samenwerking die nog altijd bestaat, en een tweede pijler die groeit.', 'Ons verhaal') + f'''
 <main id="inhoud">
 <section>
@@ -710,7 +710,7 @@ pages['ons-verhaal'] = dict(
     <ol class="tijd">
       <li><time>1996</time><p>Geert Vos start als contractor bij Nike. Eerste opdracht: een deur en een deurklink.</p></li>
       <li><time>De jaren erna</time><p>Lampen vervangen, meetings klaarzetten. Meer verantwoordelijkheden, een groter team.</p></li>
-      <li><time>Vandaag</time><p>Ongeveer elf medewerkers dagelijks bij Nike: meubilair, verhuizingen, fietsen, opslag, events. Twee eigen verhuiswagens, 300 palletplaatsen, een fietsenmaker in dienst.</p></li>
+      <li><time>Vandaag</time><p>Elke dag een volledig team bij Nike: meubilair, verhuizingen, fietsen, opslag, events. Twee eigen verhuiswagens, 300 palletplaatsen, een fietsenmaker in dienst.</p></li>
       <li><time>2024</time><p>Elektriciens en mechaniciens worden ook bij andere klanten tewerkgesteld. De tweede pijler van BV Geert Vos.</p></li>
     </ol>
     <div>
@@ -758,7 +758,7 @@ pages['werken-bij'] = dict(
       <h2>Vast werk bij vaste klanten.</h2>
       <p class="lead" style="margin-top:16px">Onze techniekers werken gedurende langere periodes bij dezelfde klant. Geen andere werf elke week, wel een site die u leert kennen en collega's die u kent.</p>
       <p style="margin-top:16px">We zijn een jong en hecht team, waarin veel collega's ook buiten het werk goed met elkaar overeenkomen. Tegelijk werken we binnen een duidelijke organisatie, met ervaren teamleads die u niet in de steek laten. Orde, stiptheid en kwaliteit zijn belangrijk voor ons, en een vriendelijke, positieve ingesteldheid ook.</p>
-      <p>Sinds 1996 zijn we dagelijks actief bij Nike, met ongeveer elf medewerkers. Sinds 2024 groeit onze tweede pijler: elektriciens en mechaniciens bij andere bedrijven in de Kempen.</p>
+      <p>Sinds 1996 zijn we dagelijks actief bij Nike, met een volledig team. Sinds 2024 groeit onze tweede pijler: elektriciens en mechaniciens bij andere bedrijven in de Kempen.</p>
     </div>
     {foto('/img/foto/ph-verhuizingen.jpg', 'Twee medewerkers van Geert Vos aan het werk', 'foto-hoog')}
   </div>
