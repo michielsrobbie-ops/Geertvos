@@ -4,11 +4,11 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, 'site') if os.path.isdir(os.path.join(HERE, 'site')) else os.path.dirname(HERE)
 DOMAIN = 'https://geertvos.be'
-V = '20260909'          # versie voor css/js — ophogen bij elke wijziging
-TEL_LORENZO = ''        # TODO: nummer Lorenzo (formaat +32470123456)
-TEL_PJ = ''             # TODO: nummer Pieter-Jan
-TEL_LORENZO_TXT = '[nummer Lorenzo]'
-TEL_PJ_TXT = '[nummer Pieter-Jan]'
+V = '20260909b'          # versie voor css/js — ophogen bij elke wijziging
+TEL_LORENZO = '+32400000000'   # TIJDELIJK — echte nummer Lorenzo invullen
+TEL_PJ = '+32400000001'        # TIJDELIJK — echte nummer Pieter-Jan invullen
+TEL_LORENZO_TXT = '+32 400 00 00 00'
+TEL_PJ_TXT = '+32 400 00 00 01'
 MAIL = 'info@geertvos.be'   # TODO: bevestigen bij klant
 
 NAV = [('elektriciens', 'Elektriciens'), ('mechaniciens', 'Mechaniciens'),
@@ -107,8 +107,8 @@ CTA = f'''<div class="cta-band">
       <p>Bel Lorenzo. Hij bekijkt samen met u wat u nodig hebt en wanneer we kunnen starten.</p>
     </div>
     <div class="knoppen">
-      <a class="btn btn-geel" href="tel:{TEL_LORENZO}">Bel Lorenzo</a>
-      <a class="btn btn-licht" href="/contact/">Stuur een bericht</a>
+      <a class="btn btn-geel" href="/contact/">Contact</a>
+      <a class="btn btn-licht tel" href="tel:{TEL_LORENZO}">{TEL_LORENZO_TXT}</a>
     </div>
   </div>
 </div>
@@ -125,11 +125,11 @@ FOOT = f'''<footer class="site-foot">
       <ul>
         <li><a href="/elektriciens/">Elektriciens</a></li>
         <li><a href="/mechaniciens/">Mechaniciens</a></li>
-        <li><a href="/facility-diensten/#verhuizingen">Verhuizingen en logistiek</a></li>
-        <li><a href="/facility-diensten/#kabelmanagement">Kabelmanagement en werkplekken</a></li>
-        <li><a href="/facility-diensten/#verlichting">Verlichting</a></li>
-        <li><a href="/facility-diensten/#fietsen">Fietsenbeheer</a></li>
-        <li><a href="/facility-diensten/#opslag">Opslag en voorraad</a></li>
+        <li><a href="/verhuizingen/">Verhuizingen en logistiek</a></li>
+        <li><a href="/kabelmanagement/">Kabelmanagement en werkplekken</a></li>
+        <li><a href="/verlichting/">Verlichting</a></li>
+        <li><a href="/fietsenbeheer/">Fietsenbeheer</a></li>
+        <li><a href="/opslag/">Opslag en voorraad</a></li>
       </ul>
     </div>
     <div>
@@ -163,6 +163,29 @@ def faq_blok(items, kop='Veelgestelde vragen'):
     return '<section class="sec-paper"><div class="wrap"><div class="sec-kop"><p class="label">Vragen</p><h2>' + kop + '</h2></div><div class="faq">' + ''.join(
         f'<details><summary>{q}</summary><p>{a}</p></details>' for q, a in items) + '</div></div></section>'
 
+def fig(src, alt, cap=''):
+    return f'<figure><img src="{src}" alt="{alt}" loading="lazy" width="460" height="600"><figcaption>{cap or alt}</figcaption></figure>'
+
+def voor_na(voor, na, cap):
+    return f'<div class="voorna"><figure><img src="{voor[0]}" alt="{voor[1]}" loading="lazy" width="460" height="600"><figcaption><b>Voor</b> {voor[1]}</figcaption></figure><figure><img src="{na[0]}" alt="{na[1]}" loading="lazy" width="460" height="600"><figcaption><b>Na</b> {na[1]}</figcaption></figure><p class="voorna-cap">{cap}</p></div>'
+
+WERK_ELEK = '''<section>
+  <div class="wrap">
+    <div class="sec-kop"><p class="label">Werk in beeld</p><h2>Zo ziet ons werk eruit.</h2><p class="lead">Foto's van opdrachten die onze elektriciens uitvoerden: verlichting, lichtmasten en wat er gebeurt als kabelmanagement ontbreekt.</p></div>
+    <p style="max-width:62ch;margin:-20px 0 28px">Voor-en-nafoto's van kabelmanagement staan op de pagina <a href="/kabelmanagement/">kabelmanagement en werkplekinrichting</a>.</p>
+    <h3 class="gal-kop">Waarom kabelmanagement telt</h3>
+    <p style="max-width:62ch;margin-bottom:20px">Slecht kabelmanagement leidt tot beschadigde kabels en stekkers, en uiteindelijk tot uitbranding. Dit zijn voorbeelden die we bij klanten aantroffen en herstelden.</p>
+    <div class="galerij galerij-3">
+      ''' + fig('/img/werk/kabel-geklemd-kast.webp', 'Kabel geklemd achter een metalen kast') + fig('/img/werk/uitgebrande-kabel.webp', 'Uitgebrande kabel na slecht kabelmanagement') + fig('/img/werk/uitgebrande-stekker.webp', 'Uitgebrande stekker') + '''
+    </div>
+    <h3 class="gal-kop">Verlichting en lichtmasten</h3>
+    <div class="galerij galerij-4">
+      ''' + fig('/img/werk/magazijn-verlichting-hoogwerker-1.webp', 'Verlichting vervangen tussen magazijnstellingen met de hoogwerker') + fig('/img/werk/magazijn-verlichting-hoogwerker-2.webp', 'Verlichting vervangen in een magazijn') + fig('/img/werk/straatverlichting-hoogwerker-2.webp', 'Straatverlichting vervangen met de hoogwerker') + fig('/img/werk/lichtmasten-op-vrachtwagen.webp', 'Mobiele lichtmasten verplaatsen en verhuizen') + '''
+    </div>
+  </div>
+</section>
+'''
+
 def ph(tekst, cls=''):
     return f'<div class="foto foto-ph {cls}"><span>{tekst}</span></div>'
 
@@ -171,13 +194,13 @@ def foto(src, alt, cls=''):
 
 # Tegels in de hero: (href, label, foto, alt) — foto's zijn nu lage-resolutie uitsneden uit de banner
 TEGELS = [
-  ('/elektriciens/', 'Elektriciens', '/img/foto/ph-elektricien.jpg', 'Elektricien aan een schakelkast'),
-  ('/mechaniciens/', 'Mechaniciens', '', 'Mechanicien aan het werk'),
-  ('/facility-diensten/#verhuizingen', 'Verhuizingen &amp; logistiek', '/img/foto/ph-verhuizingen.jpg', 'Twee medewerkers van Geert Vos bij een interne verhuizing'),
-  ('/facility-diensten/#kabelmanagement', 'Kabelmanagement &amp; werkplekken', '/img/foto/ph-werkplek.jpg', 'Ingerichte kantoorwerkplekken'),
-  ('/facility-diensten/#verlichting', 'Verlichting', '/img/foto/ph-verlichting.jpg', 'Technieker vervangt een inbouwspot'),
-  ('/facility-diensten/#fietsen', 'Fietsen beheren &amp; onderhouden', '/img/foto/ph-fietsen.jpg', 'Rij bedrijfsfietsen'),
-  ('/facility-diensten/#opslag', 'Opslag &amp; voorraad', '', 'Magazijn met palletplaatsen'),
+  ('/elektriciens/', 'Elektriciens', '/img/werk/werkstation-kabelmanagement-1.webp', 'Afgewerkt kabelmanagement aan een werkstation'),
+  ('/mechaniciens/', 'Mechaniciens', '/img/werk/lichtmast-verplaatsen-heftruck.webp', 'Lichtmast verplaatsen met de heftruck'),
+  ('/verhuizingen/', 'Verhuizingen &amp; logistiek', '/img/foto/ph-verhuizingen.jpg', 'Twee medewerkers van Geert Vos bij een interne verhuizing'),
+  ('/kabelmanagement/', 'Kabelmanagement &amp; werkplekken', '/img/werk/kabelgoot-kabelmanagement.webp', 'Kabelgoot met netjes weggewerkte kabels'),
+  ('/verlichting/', 'Verlichting', '/img/werk/magazijn-verlichting-hoogwerker-2.webp', 'Verlichting vervangen in een magazijn met de hoogwerker'),
+  ('/fietsenbeheer/', 'Fietsen beheren &amp; onderhouden', '/img/foto/ph-fietsen.jpg', 'Rij bedrijfsfietsen'),
+  ('/opslag/', 'Opslag &amp; voorraad', '/img/werk/magazijn-verlichting-hoogwerker-1.webp', 'Stellingen in een magazijn'),
 ]
 def tegel_img(src, alt):
     if src:
@@ -206,7 +229,7 @@ pages['index'] = dict(
       <h1>Uw partner in techniek &amp; facility.</h1>
       <p class="lead">Elektriciens en mechaniciens die voor langere tijd bij uw bedrijf aan de slag gaan, en alle facility-werk eromheen. Vanuit Meerhout, al bijna dertig jaar elke dag bij Nike. <strong class="geel">Wij regelen het.</strong></p>
       <div class="hero-cta">
-        <a class="btn btn-geel" href="tel:{TEL_LORENZO}">Bel Lorenzo</a>
+        <a class="btn btn-geel" href="/contact/">Contact</a>
         <a class="btn btn-licht" href="#diensten">Onze diensten</a>
       </div>
       <div class="hero-feit">
@@ -241,10 +264,11 @@ pages['index'] = dict(
     </div>
     <div class="pijlers">
       <a class="pijler" href="/elektriciens/">
-        <img src="/img/foto/ph-elektricien.jpg" alt="" loading="lazy" width="460" height="520">
+        <img src="/img/werk/werkstation-kabelmanagement-1.webp" alt="" loading="lazy" width="440" height="591">
         <div class="in"><p class="label">Pijler 1</p><h3>Elektriciens</h3><p>Voor langdurige samenwerkingen op uw locatie, of voor een kortere technische opdracht.</p><span class="meer">Meer over onze elektriciens</span></div>
       </a>
       <a class="pijler" href="/mechaniciens/">
+        <img src="/img/werk/lichtmast-verplaatsen-heftruck.webp" alt="" loading="lazy" width="347" height="557">
         <div class="in"><p class="label">Pijler 2</p><h3>Mechaniciens</h3><p>Mechanisch werk dat 100% wordt afgewerkt, met opvolging door ervaren teamleads.</p><span class="meer">Meer over onze mechaniciens</span></div>
       </a>
     </div>
@@ -259,11 +283,11 @@ pages['index'] = dict(
       <p class="lead">Bij Nike komen dagelijks opdrachten binnen via een online ticketsysteem. Onze medewerkers en teamleads plannen en voeren ze uit. Vijf takken, één team.</p>
     </div>
     <ul class="takken">
-      <li><a href="/facility-diensten/#verhuizingen"><div class="tegel"><img src="/img/foto/ph-verhuizingen.jpg" alt="" loading="lazy" width="460" height="520"></div><h3>Verhuizingen &amp; interne logistiek</h3><p>Twee eigen verhuiswagens met laadlift.</p></a></li>
-      <li><a href="/facility-diensten/#kabelmanagement"><div class="tegel"><img src="/img/foto/ph-werkplek.jpg" alt="" loading="lazy" width="460" height="520"></div><h3>Kabelmanagement &amp; werkplekinrichting</h3><p>Elektrische bureaus, stoelen, meubilair, netjes aangesloten.</p></a></li>
-      <li><a href="/facility-diensten/#verlichting"><div class="tegel"><img src="/img/foto/ph-verlichting.jpg" alt="" loading="lazy" width="460" height="520"></div><h3>Verlichting vervangen &amp; onderhouden</h3><p>Waar het in 1996 mee begon.</p></a></li>
-      <li><a href="/facility-diensten/#fietsen"><div class="tegel"><img src="/img/foto/ph-fietsen.jpg" alt="" loading="lazy" width="460" height="520"></div><h3>Fietsenbeheer &amp; -onderhoud</h3><p>Met een echte fietsenmaker in dienst.</p></a></li>
-      <li><a href="/facility-diensten/#opslag"><div class="tegel"><div class="foto-ph" style="height:100%;clip-path:none"><span>Foto volgt</span></div></div><h3>Opslag &amp; voorraadbeheer</h3><p>300 palletplaatsen, digitale inventaris.</p></a></li>
+      <li><a href="/verhuizingen/"><div class="tegel"><img src="/img/foto/ph-verhuizingen.jpg" alt="" loading="lazy" width="460" height="520"></div><h3>Verhuizingen &amp; interne logistiek</h3><p>Twee eigen verhuiswagens met laadlift.</p></a></li>
+      <li><a href="/kabelmanagement/"><div class="tegel"><img src="/img/werk/kabelgoot-kabelmanagement.webp" alt="" loading="lazy" width="441" height="585"></div><h3>Kabelmanagement &amp; werkplekinrichting</h3><p>Elektrische bureaus, stoelen, meubilair, netjes aangesloten.</p></a></li>
+      <li><a href="/verlichting/"><div class="tegel"><img src="/img/werk/magazijn-verlichting-hoogwerker-2.webp" alt="" loading="lazy" width="435" height="596"></div><h3>Verlichting vervangen &amp; onderhouden</h3><p>Waar het in 1996 mee begon.</p></a></li>
+      <li><a href="/fietsenbeheer/"><div class="tegel"><img src="/img/foto/ph-fietsen.jpg" alt="" loading="lazy" width="460" height="520"></div><h3>Fietsenbeheer &amp; -onderhoud</h3><p>Met een echte fietsenmaker in dienst.</p></a></li>
+      <li><a href="/opslag/"><div class="tegel"><img src="/img/werk/magazijn-verlichting-hoogwerker-1.webp" alt="" loading="lazy" width="447" height="590"></div><h3>Opslag &amp; voorraadbeheer</h3><p>300 palletplaatsen, digitale inventaris.</p></a></li>
     </ul>
   </div>
 </section>
@@ -338,9 +362,10 @@ def techniek_pagina(naam, enk, title, desc, lead, intro, werk, punten, faq, foto
     </div>
   </div>
 </section>
+{WERK_ELEK if enk == 'elektricien' else ''}
 <section class="sec-paper">
   <div class="wrap twee">
-    {ph(foto2, 'foto-hoog')}
+    {foto(*foto2.split('|'), 'foto-hoog') if '|' in foto2 else ph(foto2, 'foto-hoog')}
     <div>
       <p class="label">Wat u mag verwachten</p>
       <h2>Zelfstandig, met opvolging.</h2>
@@ -387,10 +412,10 @@ pages['elektriciens'] = techniek_pagina('Elektriciens', 'elektricien',
         ('Verlichting', 'Lampen en armaturen vervangen, verlichting onderhouden en aanpassen in kantoren, gangen en werkruimtes.'),
         ('Werkplekken en kabelmanagement', 'Werkplekken aansluiten, elektrische bureaus beheren, kabels netjes en veilig wegwerken.'),
         ('Onderhoud en storingen', 'Kleine herstellingen en onderhoud aan elektrische installaties, zodat alles blijft werken.'),
-        ('Meetings en events', 'Technische opstellingen klaarzetten: van geluid en grote mobiele schermen tot de stroomvoorziening erachter.')]),
+        ('Lichtmasten en straatverlichting', 'Mobiele lichtmasten verplaatsen en verhuizen, straatverlichting vervangen met de hoogwerker.')]),
   punten=['De nodige certificaten voor het werk dat u vraagt', 'Eigen materiaal en uitrusting, klaar om te starten', 'Zelfstandig werken, met opvolging door een ervaren teamlead', 'Een werkplek die proper en ordelijk achterblijft', 'Vriendelijk, flexibel en met een positieve ingesteldheid'],
   faq=FAQ_ELEK,
-  fotosrc='/img/foto/ph-elektricien.jpg', foto1='Elektricien van Geert Vos aan een schakelkast', foto2='Foto volgt: elektricien aan het werk')
+  fotosrc='/img/werk/werkstation-kabelmanagement-2.webp', foto1='Kabelmanagement aan een werkstation door Geert Vos', foto2='/img/werk/straatverlichting-hoogwerker-1.webp|Straatverlichting vervangen met de hoogwerker')
 
 pages['mechaniciens'] = techniek_pagina('Mechaniciens', 'mechanicien',
   extra=schema('mechaniciens', 'Mechaniciens', ('Mechaniciens', 'Mechaniciens en onderhoudstechniekers die voor langere periodes of een kortere opdracht bij uw bedrijf werken, met certificaten, materiaal en uitrusting.'), FAQ_MECH),
@@ -407,29 +432,224 @@ pages['mechaniciens'] = techniek_pagina('Mechaniciens', 'mechanicien',
         ('Fietsen en materieel', 'Beheer en onderhoud van een fietsenvloot door een echte fietsenmaker; beheer van magazijn en voorraad.')]),
   punten=['De nodige certificaten voor het werk dat u vraagt', 'Eigen gereedschap en uitrusting, klaar om te starten', 'Zelfstandig werken, met opvolging door een ervaren teamlead', 'Een werkplek die proper en ordelijk achterblijft', 'Vriendelijk, flexibel en met een positieve ingesteldheid'],
   faq=FAQ_MECH,
-  fotosrc='', foto1='Foto volgt: mechanicien aan het werk', foto2='Foto volgt: technieker met gereedschap')
+  fotosrc='/img/werk/lichtmast-verplaatsen-heftruck.webp', foto1='Lichtmast verplaatsen met de heftruck', foto2='/img/werk/lichtmasten-op-vrachtwagen.webp|Lichtmasten geladen op de vrachtwagen')
 
-# ---------------------------------------------------------------- FACILITY
-def blok(id, label, h2, tekst, punten, fotosrc, alt):
-    f = foto(fotosrc, alt) if fotosrc else ph(alt)
-    return f'''<div class="dienst-blok" id="{id}">
-  <div>
-    <p class="label">{label}</p>
-    <h2>{h2}</h2>
-    <p>{tekst}</p>
-    <ul class="punten">{''.join(f'<li>{p}</li>' for p in punten)}</ul>
+# ---------------------------------------------------------------- FACILITY (overzicht + 5 dienstpagina's)
+DIENSTEN = [
+  # slug, naam (kort, voor tegels/menu), h1, label
+  ('verhuizingen', 'Verhuizingen &amp; interne logistiek', 'Verhuizingen en interne logistiek', 'Tak 1'),
+  ('kabelmanagement', 'Kabelmanagement &amp; werkplekinrichting', 'Kabelmanagement en werkplekinrichting', 'Tak 2'),
+  ('verlichting', 'Verlichting vervangen &amp; onderhouden', 'Verlichting vervangen en onderhouden', 'Tak 3'),
+  ('fietsenbeheer', 'Fietsenbeheer &amp; -onderhoud', 'Fietsenbeheer en -onderhoud', 'Tak 4'),
+  ('opslag', 'Opslag &amp; voorraadbeheer', 'Opslag en voorraadbeheer', 'Tak 5'),
+]
+
+def dienst_pagina(slug, naam, h1, label, title, desc, lead, intro, werk, punten, faq, fotosrc, alt, foto2, galerij=''):
+    andere = ''.join(f'<li><a href="/{sl}/">{nm}</a></li>' for sl, nm, _, _ in DIENSTEN if sl != slug)
+    return dict(title=title, desc=desc,
+      extra=schema(slug, h1, (h1, desc), faq),
+      body=kop(label + ' · Facility &amp; logistiek', h1, lead, f'<a href="/facility-diensten/">Facility</a> / {h1}') + f'''
+<main id="inhoud">
+<section>
+  <div class="wrap twee">
+    <div>
+      <h2>{intro[0]}</h2>
+      <p class="lead" style="margin-top:16px">{intro[1]}</p>
+      <p style="margin-top:16px">{intro[2]}</p>
+      <p>{intro[3]}</p>
+    </div>
+    {foto(fotosrc, alt) if fotosrc else ph(alt)}
   </div>
-  {f}
-</div>'''
+</section>
+<section class="sec-paper">
+  <div class="wrap">
+    <div class="sec-kop"><p class="label">Wat we doen</p><h2>{werk[0]}</h2><p class="lead">{werk[1]}</p></div>
+    <div class="waarden">{''.join(f'<div><h3>{k}</h3><p>{t}</p></div>' for k, t in werk[2])}</div>
+  </div>
+</section>
+{galerij}
+<section{'' if galerij else ' class="sec-paper"'}>
+  <div class="wrap twee">
+    {foto(*foto2.split('|'), 'foto-hoog') if '|' in foto2 else ph(foto2, 'foto-hoog')}
+    <div>
+      <p class="label">Wat u mag verwachten</p>
+      <h2>Geregeld, en proper achtergelaten.</h2>
+      <ul class="punten">{''.join(f'<li>{p}</li>' for p in punten)}</ul>
+    </div>
+  </div>
+</section>
+<section class="sec-paper">
+  <div class="wrap">
+    <div class="sec-kop"><p class="label">Zo gaat het</p><h2>Van vraag tot afgewerkte opdracht.</h2></div>
+    <ol class="stappen">
+      <li><h3>Opdracht komt binnen</h3><p>Via het ticketsysteem, een mail of een telefoontje naar Lorenzo. Hij bekijkt wat er nodig is en wanneer.</p></li>
+      <li><h3>Team en materiaal ingepland</h3><p>Onze teamleads plannen de juiste mensen in, met het materiaal, de wagens en de uitrusting die de klus vraagt.</p></li>
+      <li><h3>Uitgevoerd en afgewerkt</h3><p>Pas klaar als het 100% af is en de werkplek proper en ordelijk is. De teamlead volgt het op.</p></li>
+    </ol>
+  </div>
+</section>
+''' + faq_blok(faq) + f'''
+<section>
+  <div class="wrap">
+    <div class="sec-kop"><p class="label">Ook van ons</p><h2>Onze andere facility-diensten.</h2></div>
+    <ul class="andere">{andere}<li><a href="/elektriciens/">Elektriciens</a></li><li><a href="/mechaniciens/">Mechaniciens</a></li></ul>
+  </div>
+</section>
+</main>
+''' + CTA)
 
+# --- 1 Verhuizingen
+pages['verhuizingen'] = dienst_pagina('verhuizingen', DIENSTEN[0][1], DIENSTEN[0][2], DIENSTEN[0][3],
+  title='Interne verhuizingen en logistiek | BV Geert Vos, Meerhout',
+  desc='Interne verhuizingen, meetingopstellingen en logistiek voor bedrijven in de Kempen. Twee eigen verhuiswagens met laadlift. Al bijna 30 jaar dagelijks bij Nike.',
+  lead='Afdelingen verhuizen, werkplekken verplaatsen, meetings en events opbouwen: interne verhuizingen en logistieke opdrachten zijn een groot deel van ons dagelijks werk.',
+  intro=('Verhuizen zonder dat de rest stilvalt.', 'Een interne verhuizing lijkt klein tot je ze moet organiseren: bureaus, stoelen, kasten, schermen, dozen, en iedereen die de volgende ochtend gewoon wil kunnen werken. Wij doen dit al bijna dertig jaar, elke dag.',
+         'Daarvoor beschikken we over twee eigen verhuiswagens met laadlift, zodat materiaal veilig en ergonomisch geladen en gelost wordt. Geen getil over drempels, geen beschadigde kasten, geen rugklachten.',
+         'Ook meetings en evenementen zetten we klaar: tafels, stoelen, geluid en de grote mobiele schermen die de beamers van vroeger hebben vervangen. En na afloop ruimen we alles weer op.'),
+  werk=('Van dozen tot complete afdelingen.', 'Wat we bij Nike dagelijks uitvoeren, doen we ook voor uw bedrijf.', [
+        ('Interne verhuizingen', 'Werkplekken, afdelingen en meubilair verplaatsen binnen het gebouw of tussen gebouwen. Gepland rond uw werking, zodat niemand stilvalt.'),
+        ('Twee verhuiswagens met laadlift', 'Eigen wagens, dus geen wachten op een externe transporteur. Veilig en ergonomisch laden en lossen.'),
+        ('Meetings en evenementen', 'Opstellingen klaarzetten met tafels, stoelen, geluidsinstallatie en grote mobiele schermen. Na afloop weer afgebroken en opgeruimd.'),
+        ('Logistieke ondersteuning', 'Materiaal ophalen, leveren, verdelen en terugbrengen. Ook lichtmasten en ander zwaar materieel verplaatsen we, met heftruck als het moet.')]),
+  punten=['Twee eigen verhuiswagens met laadlift', 'Ervaren ploeg die dagelijks verhuist', 'Gepland rond uw werking, ook buiten de kantooruren als dat nodig is', 'Meubilair en materiaal veilig en zonder schade verplaatst', 'Alles weer proper en ordelijk achtergelaten'],
+  faq=[
+    ('Verhuizen jullie ook tussen twee gebouwen?', 'Ja. Met onze eigen verhuiswagens met laadlift verplaatsen we materiaal veilig tussen locaties, niet alleen binnen één gebouw.'),
+    ('Kunnen jullie een meeting of event opbouwen?', 'Ja. Meetings en evenementen klaarzetten met tafels, stoelen, geluid en grote mobiele schermen doen we al sinds 1996, en na afloop ruimen we alles weer op.'),
+    ('Hoe snel kunnen jullie een verhuizing inplannen?', 'Dat hangt af van de omvang. Bel Lorenzo, hij bekijkt met u wat er moet gebeuren en wanneer we de ploeg en de wagens kunnen inzetten.'),
+    ('Wat als er iets beschadigd raakt?', 'Daarom werken we met laadliften, ervaren mensen en een teamlead die opvolgt. Een opdracht is voor ons pas klaar als ze 100% correct is afgewerkt.'),
+  ],
+  fotosrc='/img/foto/ph-verhuizingen.jpg', alt='Twee medewerkers van Geert Vos dragen een kast bij een interne verhuizing',
+  foto2='/img/werk/lichtmasten-op-vrachtwagen.webp|Lichtmasten geladen op de vrachtwagen voor transport')
+
+# --- 2 Kabelmanagement
+GAL_KABEL = '''<section>
+  <div class="wrap">
+    <div class="sec-kop"><p class="label">Voor en na</p><h2>Zo ziet goed kabelmanagement eruit.</h2></div>
+    <div class="galerij galerij-2">
+      ''' + voor_na(('/img/werk/kabelmanagement-voor.webp', 'losse, hangende kabels'), ('/img/werk/kabelmanagement-na.webp', 'kabels gebundeld en weggewerkt'), 'Werkplekbekabeling opnieuw gelegd en gebundeld.') + voor_na(('/img/werk/werkstation-kabels-voor.webp', 'kabels los onder een werkstation'), ('/img/werk/werkstation-kabels-na.webp', 'werkstation met opgeruimde bekabeling'), 'Werkstation: alle kabels geleid en vastgezet.') + '''
+    </div>
+    <h3 class="gal-kop">Wat er gebeurt als het niet gebeurt</h3>
+    <p style="max-width:62ch;margin-bottom:20px">Kabels die klem zitten, geplet worden of los over de vloer lopen, raken beschadigd. Het eindigt met uitgebrande stekkers en kabels. Dit zijn voorbeelden die we bij klanten aantroffen en herstelden.</p>
+    <div class="galerij galerij-3">
+      ''' + fig('/img/werk/kabel-geklemd-kast.webp', 'Kabel geklemd achter een metalen kast') + fig('/img/werk/uitgebrande-kabel.webp', 'Uitgebrande kabel na slecht kabelmanagement') + fig('/img/werk/uitgebrande-stekker.webp', 'Uitgebrande stekker') + '''
+    </div>
+  </div>
+</section>
+'''
+pages['kabelmanagement'] = dienst_pagina('kabelmanagement', DIENSTEN[1][1], DIENSTEN[1][2], DIENSTEN[1][3],
+  title='Kabelmanagement en werkplekinrichting | BV Geert Vos, Meerhout',
+  desc='Werkplekken opbouwen en aanpassen, kabels netjes en veilig wegwerken, elektrische bureaus en meubilair beheren. Voor bedrijven in de Kempen, dagelijks bij Nike.',
+  lead='Werkplekken opbouwen, verplaatsen en aanpassen, met kabels die netjes en veilig zijn weggewerkt. Plus het beheer van elektrische bureaus, stoelen en meubilair.',
+  intro=('Een werkplek die werkt, en er ook zo uitziet.', 'Werkplekaanpassingen komen bij Nike dagelijks binnen via het ticketsysteem: een nieuwe collega, een team dat verhuist, een bureau dat anders moet staan. Wij bouwen op, sluiten aan en werken de kabels weg.',
+         'We beheren en onderhouden er ook de elektrische bureaus, de bureaustoelen en een groot deel van het meubilair in breakrooms en restaurants. Kapot? Wij herstellen het. Versleten? Wij vervangen het.',
+         'Kabelmanagement is geen cosmetica. Losse en geplette kabels raken beschadigd en leiden tot uitgebrande stekkers. Netjes weggewerkt is dus ook veilig weggewerkt.'),
+  werk=('Van kabelgoot tot bureaustoel.', 'Alles wat een werkplek nodig heeft om te werken, elke dag opnieuw.', [
+        ('Werkplekken opbouwen en aanpassen', 'Nieuwe werkplekken opbouwen, bestaande verplaatsen of aanpassen. Bureau, stoel, scherm, stroom en data: klaar om te gebruiken.'),
+        ('Kabelmanagement', 'Kabels leiden, bundelen en vastzetten in goten en onder bureaus. Netjes, veilig en makkelijk aan te passen als er iets verandert.'),
+        ('Elektrische bureaus en stoelen', 'Beheer, onderhoud en herstelling van elektrische zit-stabureaus en bureaustoelen.'),
+        ('Meubilair breakrooms en restaurants', 'Tafels, stoelen en ander meubilair in gemeenschappelijke ruimtes onderhouden, herstellen en vervangen.')]),
+  punten=['Werkplek klaar om te gebruiken, inclusief stroom en data', 'Kabels weggewerkt volgens de regels van de kunst', 'Herstelling van elektrische bureaus en stoelen in eigen beheer', 'Dagelijks bereikbaar via ticketsysteem of telefoon', 'Werkplek proper en ordelijk achtergelaten'],
+  faq=[
+    ('Doen jullie ook kleine aanpassingen, zoals één bureau verplaatsen?', 'Ja. Bij Nike komen zulke tickets dagelijks binnen. Van kleine klussen tot complete projecten: wij regelen het.'),
+    ('Herstellen jullie elektrische bureaus?', 'Ja, beheer en onderhoud van elektrische bureaus en bureaustoelen hoort bij ons dagelijks werk.'),
+    ('Waarom is kabelmanagement belangrijk?', 'Losse of geplette kabels raken beschadigd en kunnen uitbranden. Netjes weggewerkte kabels zijn veiliger, gaan langer mee en zijn makkelijker aan te passen.'),
+    ('Kunnen jullie een hele afdeling inrichten?', 'Ja. Samen met onze verhuisploeg en onze elektriciens richten we complete afdelingen in, van meubilair tot bekabeling.'),
+  ],
+  fotosrc='/img/werk/kabelgoot-kabelmanagement.webp', alt='Kabelgoot met netjes weggewerkte kabels aan een reeks werkstations',
+  foto2='/img/werk/werkstation-kabelmanagement-2.webp|Afgewerkt kabelmanagement aan een werkstation', galerij=GAL_KABEL)
+
+# --- 3 Verlichting
+GAL_LICHT = '''<section>
+  <div class="wrap">
+    <div class="sec-kop"><p class="label">Werk in beeld</p><h2>Van magazijn tot straat.</h2></div>
+    <div class="galerij galerij-4">
+      ''' + fig('/img/werk/magazijn-verlichting-hoogwerker-1.webp', 'Verlichting vervangen tussen magazijnstellingen met de hoogwerker') + fig('/img/werk/magazijn-verlichting-hoogwerker-2.webp', 'Verlichting vervangen in een magazijn') + fig('/img/werk/straatverlichting-hoogwerker-1.webp', 'Straatverlichting vervangen met de hoogwerker') + fig('/img/werk/lichtmast-verplaatsen-heftruck.webp', 'Mobiele lichtmast verplaatsen met de heftruck') + '''
+    </div>
+  </div>
+</section>
+'''
+pages['verlichting'] = dienst_pagina('verlichting', DIENSTEN[2][1], DIENSTEN[2][2], DIENSTEN[2][3],
+  title='Verlichting vervangen en onderhouden | BV Geert Vos, Meerhout',
+  desc='Lampen en armaturen vervangen in kantoren en magazijnen, straatverlichting met de hoogwerker, lichtmasten verplaatsen. Voor bedrijven in de Kempen.',
+  lead='Lampen vervangen was in 1996 een van onze allereerste opdrachten. Vandaag onderhouden we verlichting van kantoor tot magazijn en van parking tot straat.',
+  intro=('Alles blijft branden.', 'Een defecte lamp lijkt een detail, tot het er tien zijn in een magazijngang of op een parking. Wij vervangen en onderhouden verlichting zodat u er niet aan hoeft te denken.',
+         'In kantoren, gangen en werkruimtes doen we dat vanop de ladder. In magazijnen met hoge stellingen en buiten aan straatverlichting werken we met de hoogwerker. Mobiele lichtmasten verplaatsen en verhuizen we met de heftruck en onze eigen wagens.',
+         'Het werk gebeurt door onze eigen elektriciens, met de certificaten en de uitrusting die erbij horen. Gepland als onderhoud, of snel als er iets uitvalt.'),
+  werk=('Binnen, buiten en in de hoogte.', 'Verlichting in al zijn vormen, uitgevoerd door onze eigen elektriciens.', [
+        ('Kantoren en werkruimtes', 'Lampen en armaturen vervangen en onderhouden in kantoren, gangen, breakrooms en werkplaatsen.'),
+        ('Magazijnen', 'Verlichting vervangen tussen en boven hoge stellingen, met de hoogwerker. Veilig en zonder het magazijn stil te leggen.'),
+        ('Straat- en buitenverlichting', 'Straatverlichting en parkingverlichting vervangen met de hoogwerker.'),
+        ('Lichtmasten', 'Mobiele lichtmasten verplaatsen, verhuizen en opstellen, met heftruck en eigen wagens.')]),
+  punten=['Eigen elektriciens met de nodige certificaten', 'Hoogwerker voor magazijnen en buitenverlichting', 'Geplande onderhoudsrondes of snel bij uitval', 'Lichtmasten verplaatst met eigen materieel', 'Werkplek proper achtergelaten, oude lampen afgevoerd'],
+  faq=[
+    ('Vervangen jullie ook verlichting op grote hoogte?', 'Ja. Voor magazijnen met hoge stellingen en voor straatverlichting werken we met de hoogwerker.'),
+    ('Kunnen jullie een onderhoudsronde inplannen?', 'Ja. Veel klanten laten ons de verlichting periodiek nakijken en vervangen, zodat er minder uitval is tussendoor.'),
+    ('Wie voert het werk uit?', 'Onze eigen elektriciens, met de certificaten, het materiaal en de uitrusting die erbij horen.'),
+    ('Verplaatsen jullie ook lichtmasten?', 'Ja. Mobiele lichtmasten verplaatsen en verhuizen we met de heftruck en onze eigen wagens.'),
+  ],
+  fotosrc='/img/werk/magazijn-verlichting-hoogwerker-2.webp', alt='Verlichting vervangen in een magazijn met de hoogwerker',
+  foto2='/img/werk/straatverlichting-hoogwerker-2.webp|Straatverlichting vervangen met de hoogwerker', galerij=GAL_LICHT)
+
+# --- 4 Fietsenbeheer
+pages['fietsenbeheer'] = dienst_pagina('fietsenbeheer', DIENSTEN[3][1], DIENSTEN[3][2], DIENSTEN[3][3],
+  title='Fietsenbeheer en fietsonderhoud voor bedrijven | BV Geert Vos',
+  desc='Beheer en onderhoud van bedrijfsfietsen door een echte fietsenmaker in dienst. Herstellingen, nazicht en beheer van de vloot, voor bedrijven in de Kempen.',
+  lead='Een bedrijf met veel fietsen heeft veel onderhoud. Wij hebben daarvoor een echte fietsenmaker in dienst.',
+  intro=('Een fietsenmaker op uw site.', 'Bedrijfsfietsen, dienstfietsen, fietsen om over een grote site te rijden: ze worden intensief gebruikt en moeten het blijven doen. Daarom hebben we een echte fietsenmaker in dienst, geen collega die het er even bij doet.',
+         'Hij staat in voor het beheer en onderhoud van de vloot: nazicht, herstellingen, banden, remmen, kettingen, verlichting. Fietsen die niet meer te redden zijn, gaan eruit; nieuwe komen erbij.',
+         'Daarnaast beheert hij mee onze opslagruimte, dus onderdelen en reservefietsen liggen klaar en zijn terug te vinden.'),
+  werk=('Alles wat een vloot nodig heeft.', 'Van dagelijks onderhoud tot het beheer van de hele fietsenvloot.', [
+        ('Beheer van de vloot', 'Overzicht van alle fietsen: welke er zijn, waar ze staan, wat de staat is en wanneer ze onderhoud nodig hebben.'),
+        ('Onderhoud', 'Periodiek nazicht van banden, remmen, ketting, versnellingen en verlichting, zodat de fietsen veilig blijven.'),
+        ('Herstellingen', 'Platte band, kapotte ketting, losse trapper: hersteld door een vakman, snel weer inzetbaar.'),
+        ('Onderdelen en reserve', 'Onderdelen en reservefietsen op voorraad in ons magazijn, digitaal bijgehouden.')]),
+  punten=['Een echte fietsenmaker in dienst', 'Beheer én onderhoud van de hele vloot', 'Onderdelen en reservefietsen op voorraad', 'Herstellingen ter plaatse of in ons atelier', 'Overzicht van de staat van elke fiets'],
+  faq=[
+    ('Wie doet het onderhoud?', 'Een echte fietsenmaker die bij BV Geert Vos in dienst is. Hij staat ook mee in voor het beheer van onze opslagruimte.'),
+    ('Beheren jullie ook de hele vloot?', 'Ja. Naast onderhoud en herstellingen houden we bij welke fietsen er zijn, in welke staat ze zijn en wanneer ze nazicht nodig hebben.'),
+    ('Hebben jullie onderdelen op voorraad?', 'Ja. Onderdelen en reservefietsen liggen in ons magazijn en worden bijgehouden in onze digitale inventaris.'),
+    ('Kunnen jullie starten met een bestaande vloot?', 'Zeker. We beginnen met een nazicht van alle fietsen en een overzicht van wat er moet gebeuren.'),
+  ],
+  fotosrc='/img/foto/ph-fietsen.jpg', alt='Rij bedrijfsfietsen in beheer bij Geert Vos',
+  foto2='Foto volgt: onze fietsenmaker aan het werk')
+
+# --- 5 Opslag
+pages['opslag'] = dienst_pagina('opslag', DIENSTEN[4][1], DIENSTEN[4][2], DIENSTEN[4][3],
+  title='Opslag en voorraadbeheer, 300 palletplaatsen | BV Geert Vos',
+  desc='Opslagruimte met ongeveer 300 palletplaatsen en een digitale inventaris die dagelijks wordt bijgewerkt. Opslag en voorraadbeheer voor bedrijven in de Kempen.',
+  lead='Ongeveer 300 palletplaatsen en een digitale inventaris die elke dag wordt bijgewerkt. U weet altijd wat er ligt en waar.',
+  intro=('Wat u niet dagelijks nodig hebt, ligt bij ons klaar.', 'Meubilair dat tijdelijk weg moet, materiaal voor events, reserveonderdelen, seizoensmateriaal: het moet ergens naartoe, en het moet terug te vinden zijn als u het nodig hebt.',
+         'Wij beschikken over een opslagruimte met ongeveer 300 palletplaatsen. Alles wat binnenkomt, wordt geregistreerd in een digitale inventaris die dagelijks wordt bijgewerkt. Geen zoekwerk, geen dubbele aankopen.',
+         'Onze fietsenmaker staat mee in voor het beheer van het magazijn, en onze verhuiswagens met laadlift brengen en halen wat u nodig hebt.'),
+  werk=('Opslaan, bijhouden, leveren.', 'Meer dan een loods: een voorraad die beheerd wordt.', [
+        ('300 palletplaatsen', 'Droge, geordende opslag voor meubilair, materiaal en reserveonderdelen.'),
+        ('Digitale inventaris', 'Elke pallet en elk stuk geregistreerd, dagelijks bijgewerkt. U weet wat er ligt zonder te gaan kijken.'),
+        ('In- en uitslag', 'Materiaal ophalen, opslaan en terugbrengen met onze eigen verhuiswagens met laadlift.'),
+        ('Beheer door een vast aanspreekpunt', 'Eén persoon die het magazijn kent en weet waar alles ligt.')]),
+  punten=['Ongeveer 300 palletplaatsen', 'Digitale inventaris, dagelijks bijgewerkt', 'Transport met eigen verhuiswagens', 'Vast aanspreekpunt voor het magazijn', 'Combineerbaar met verhuizingen en werkplekinrichting'],
+  faq=[
+    ('Hoeveel opslagruimte hebben jullie?', 'Ongeveer 300 palletplaatsen.'),
+    ('Hoe weet ik wat er van mij ligt?', 'Alles wordt bijgehouden in een digitale inventaris die dagelijks wordt bijgewerkt. Vraag het aan ons vast aanspreekpunt en u krijgt het overzicht.'),
+    ('Halen en brengen jullie ook?', 'Ja, met onze eigen verhuiswagens met laadlift.'),
+    ('Kunnen jullie tijdelijke opslag doen tijdens een verhuizing?', 'Ja. Dat combineren we vaak: meubilair tijdelijk bij ons, en terug op zijn plaats als de nieuwe ruimte klaar is.'),
+  ],
+  fotosrc='/img/werk/magazijn-verlichting-hoogwerker-1.webp', alt='Magazijnstellingen met pallets',
+  foto2='Foto volgt: ons eigen magazijn met palletplaatsen')
+
+# --- overzicht
 FAQ_FAC = [
   ('Doen jullie ook kleine klussen?', 'Ja. Van een deurklink herstellen tot een volledige interne verhuizing: van kleine klussen tot complete projecten. Wij regelen het.'),
   ('Hoe komen opdrachten bij jullie binnen?', 'Bij Nike via een online ticketsysteem waarin dagelijks opdrachten binnenkomen; onze medewerkers en teamleads plannen en voeren ze uit. Voor andere klanten spreken we af wat het beste werkt.'),
-  ('Hebben jullie eigen verhuiswagens?', 'Ja, twee eigen verhuiswagens met laadlift, zodat materiaal veilig en ergonomisch geladen en gelost wordt.'),
-  ('Kunnen jullie ook materiaal voor ons opslaan?', 'We beschikken over ongeveer 300 palletplaatsen en beheren de voorraad via een digitale inventaris die dagelijks wordt bijgewerkt.'),
-  ('Wie onderhoudt de fietsen?', 'Een echte fietsenmaker in dienst van BV Geert Vos. Hij staat ook mee in voor het beheer van onze opslagruimte.'),
+  ('Kunnen jullie meerdere diensten combineren?', 'Dat is net onze sterkte: één team dat verhuist, werkplekken inricht, verlichting vervangt, fietsen onderhoudt en het magazijn beheert. Eén aanspreekpunt, Lorenzo.'),
+  ('Werken jullie ook buiten Nike?', 'Ja. Sinds 2024 zetten we onze ervaring ook in bij andere bedrijven in de Kempen en omstreken.'),
 ]
-
+FAC_TEGELS = [
+  ('verhuizingen', '/img/foto/ph-verhuizingen.jpg', 'Twee eigen verhuiswagens met laadlift, meetings en events.'),
+  ('kabelmanagement', '/img/werk/kabelgoot-kabelmanagement.webp', 'Werkplekken opbouwen, kabels wegwerken, bureaus en stoelen beheren.'),
+  ('verlichting', '/img/werk/magazijn-verlichting-hoogwerker-2.webp', 'Van kantoor tot magazijn en straat, met de hoogwerker.'),
+  ('fietsenbeheer', '/img/foto/ph-fietsen.jpg', 'Met een echte fietsenmaker in dienst.'),
+  ('opslag', '/img/werk/magazijn-verlichting-hoogwerker-1.webp', '300 palletplaatsen en een digitale inventaris.'),
+]
 pages['facility-diensten'] = dict(
   extra=schema('facility-diensten', 'Facility', ('Facility en logistiek', 'Interne verhuizingen, kabelmanagement en werkplekinrichting, verlichting, fietsenbeheer en opslag met 300 palletplaatsen.'), FAQ_FAC),
   title='Facility en logistiek in de Kempen | BV Geert Vos, Meerhout',
@@ -438,11 +658,22 @@ pages['facility-diensten'] = dict(
 <main id="inhoud">
 <section>
   <div class="wrap">
-    {blok('verhuizingen', 'Tak 1', 'Verhuizingen &amp; interne logistiek', 'Interne verhuizingen en logistieke opdrachten zijn een groot deel van ons dagelijks werk. Daarvoor beschikken we over twee eigen verhuiswagens met laadlift, zodat materiaal veilig en ergonomisch geladen en gelost wordt.', ['Interne verhuizingen van werkplekken, afdelingen en meubilair', 'Twee eigen verhuiswagens met laadlift', 'Meetings en evenementen klaarzetten, vandaag met grote mobiele schermen'], '/img/foto/ph-verhuizingen.jpg', 'Twee medewerkers van Geert Vos bij een interne verhuizing')}
-    {blok('kabelmanagement', 'Tak 2', 'Kabelmanagement &amp; werkplekinrichting', 'We beheren en onderhouden elektrische bureaus, bureaustoelen en een groot deel van het meubilair in breakrooms en restaurants. Werkplekaanpassingen komen dagelijks binnen via het ticketsysteem.', ['Werkplekken opbouwen, verplaatsen en aanpassen', 'Kabelmanagement, netjes en veilig weggewerkt', 'Beheer en onderhoud van elektrische bureaus, stoelen en meubilair'], '/img/foto/ph-werkplek.jpg', 'Ingerichte kantoorwerkplekken')}
-    {blok('verlichting', 'Tak 3', 'Verlichting vervangen &amp; onderhouden', 'Lampen vervangen was een van de allereerste opdrachten in 1996. Het zit nog altijd in ons takenpakket: verlichting vervangen en onderhouden, zodat alles blijft branden.', ['Lampen en armaturen vervangen', 'Onderhoud van verlichting in kantoren, gangen en werkruimtes'], '/img/foto/ph-verlichting.jpg', 'Technieker vervangt een inbouwspot')}
-    {blok('fietsen', 'Tak 4', 'Fietsenbeheer &amp; -onderhoud', 'Voor het beheer en onderhoud van fietsen hebben we een echte fietsenmaker in dienst. Hij staat daarnaast mee in voor het beheer van onze opslagruimte.', ['Beheer van een fietsenvloot', 'Onderhoud en herstellingen door een fietsenmaker'], '/img/foto/ph-fietsen.jpg', 'Rij bedrijfsfietsen')}
-    {blok('opslag', 'Tak 5', 'Opslag &amp; voorraadbeheer', 'We beschikken over ongeveer 300 palletplaatsen en beheren onze voorraad via een digitale inventaris die dagelijks wordt bijgewerkt. Zo weet u altijd wat waar ligt.', ['Ongeveer 300 palletplaatsen', 'Digitale inventaris, dagelijks bijgewerkt', 'Beheer door een vast aanspreekpunt'], '', 'Foto volgt: magazijn met palletplaatsen')}
+    <div class="sec-kop"><p class="label">Vijf takken, één team</p><h2>Alles wat een site elke dag nodig heeft.</h2><p class="lead">Elke dienst heeft een eigen pagina met wat we precies doen, foto's en veelgestelde vragen.</p></div>
+    <ul class="takken">
+      {''.join(f'<li><a href="/{sl}/"><div class="tegel"><img src="{src}" alt="" loading="lazy" width="440" height="550"></div><h3>{nm}</h3><p>{tx}</p></a></li>' for (sl, src, tx), (_, nm, _, _) in zip(FAC_TEGELS, DIENSTEN))}
+    </ul>
+  </div>
+</section>
+<section class="sec-paper">
+  <div class="wrap twee">
+    <div>
+      <p class="label">Werking</p>
+      <h2>Elke dag een ticket, elke dag geregeld.</h2>
+      <p class="lead" style="margin-top:16px">Bij Nike werken we met een online ticketsysteem waarin dagelijks opdrachten binnenkomen. Onze medewerkers en teamleads zorgen voor de planning en de uitvoering.</p>
+      <p style="margin-top:16px">Die opdrachten zijn zeer uiteenlopend: van werkplekaanpassingen, kabelmanagement en verlichting tot verhuizingen, meetingopstellingen, fietsenbeheer, meubilair en logistieke ondersteuning. Eén team dat alles kent, één aanspreekpunt voor u.</p>
+      <p>Dat we hier na bijna dertig jaar nog steeds dagelijks met een volledig team actief zijn, zegt volgens ons veel over de samenwerking en het vertrouwen dat doorheen de jaren is opgebouwd.</p>
+    </div>
+    {foto('/img/foto/ph-verhuizingen.jpg', 'Medewerkers van Geert Vos aan het werk', 'foto-hoog')}
   </div>
 </section>
 ''' + faq_blok(FAQ_FAC) + '</main>\n' + CTA)
@@ -603,7 +834,7 @@ pages['contact'] = dict(
         </div>
         <div class="veld"><label for="dienst">Waarover gaat het?</label>
           <select id="dienst" name="Dienst">
-            <option>Elektriciens</option><option>Mechaniciens</option><option>Verhuizingen en logistiek</option><option>Kabelmanagement en werkplekinrichting</option><option>Verlichting</option><option>Fietsenbeheer</option><option>Opslag en voorraadbeheer</option><option>Iets anders</option>
+            <option>Elektriciens</option><option>Mechaniciens</option><option>Verhuizingen en interne logistiek</option><option>Kabelmanagement en werkplekinrichting</option><option>Verlichting</option><option>Fietsenbeheer</option><option>Opslag en voorraadbeheer</option><option>Iets anders</option>
           </select></div>
         <div class="veld"><label for="bericht">Bericht</label><textarea id="bericht" name="Bericht" required></textarea></div>
         <div><button class="btn btn-geel" type="submit">Verstuur bericht</button></div>
@@ -655,6 +886,6 @@ for slug, p in pages.items():
     open(os.path.join(OUT, f'{slug}.html'), 'w').write(html)
     print(slug, len(html))
 
-urls = ['', 'elektriciens/', 'mechaniciens/', 'facility-diensten/', 'ons-verhaal/', 'werken-bij/', 'contact/', 'privacybeleid/']
+urls = ['', 'elektriciens/', 'mechaniciens/', 'facility-diensten/', 'verhuizingen/', 'kabelmanagement/', 'verlichting/', 'fietsenbeheer/', 'opslag/', 'ons-verhaal/', 'werken-bij/', 'contact/', 'privacybeleid/']
 open(os.path.join(OUT, 'sitemap.xml'), 'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{DOMAIN}/{u}</loc></url>\n' for u in urls) + '</urlset>\n')
 open(os.path.join(OUT, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\nSitemap: {DOMAIN}/sitemap.xml\n')

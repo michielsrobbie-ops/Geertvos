@@ -353,3 +353,26 @@ form{display:grid;gap:16px}
 .faq summary::after{content:"";position:absolute;right:4px;top:50%;width:12px;height:12px;border-right:3px solid var(--geel);border-bottom:3px solid var(--geel);transform:translateY(-70%) rotate(45deg);transition:transform .2s}
 .faq details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
 .faq p{color:var(--ink-2);padding:0 0 16px;max-width:66ch}
+
+/* Werk in beeld */
+.gal-kop{font-size:22px;margin:40px 0 16px}
+.gal-kop:first-of-type{margin-top:0}
+.galerij{display:grid;gap:clamp(16px,2.5vw,28px)}
+.galerij-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.galerij-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.galerij-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.galerij figure{margin:0}
+.galerij img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;background:var(--paper)}
+.galerij figcaption{font-size:14px;color:var(--steel);margin-top:8px;line-height:1.4}
+.voorna{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:start}
+.voorna figcaption b{color:var(--ink);font-weight:700;margin-right:6px}
+.voorna figcaption b::before{content:"";display:inline-block;width:10px;height:3px;background:var(--geel);vertical-align:middle;margin-right:6px}
+.voorna-cap{grid-column:1/-1;font-size:15px;color:var(--ink-2);margin-top:4px}
+@media(max-width:900px){.galerij-2{grid-template-columns:1fr}.galerij-3,.galerij-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.galerij-3,.galerij-4{grid-template-columns:1fr}}
+
+/* Andere diensten */
+.andere{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.andere a{display:inline-block;padding:12px 18px;border:2px solid var(--ink);border-radius:var(--r);text-decoration:none;font-weight:600;font-size:15px}
+.andere a:hover{background:var(--ink);color:#fff}
+.kop .kruimel a{color:rgba(255,255,255,.75)}
