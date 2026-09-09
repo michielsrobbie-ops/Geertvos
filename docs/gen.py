@@ -4,15 +4,14 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, 'site') if os.path.isdir(os.path.join(HERE, 'site')) else os.path.dirname(HERE)
 DOMAIN = 'https://geertvos.be'
-V = '20260909b'          # versie voor css/js — ophogen bij elke wijziging
+V = '20260909c'          # versie voor css/js — ophogen bij elke wijziging
 TEL_LORENZO = '+32400000000'   # TIJDELIJK — echte nummer Lorenzo invullen
 TEL_PJ = '+32400000001'        # TIJDELIJK — echte nummer Pieter-Jan invullen
 TEL_LORENZO_TXT = '+32 400 00 00 00'
 TEL_PJ_TXT = '+32 400 00 00 01'
 MAIL = 'info@geertvos.be'   # TODO: bevestigen bij klant
 
-NAV = [('elektriciens', 'Elektriciens'), ('mechaniciens', 'Mechaniciens'),
-       ('facility-diensten', 'Facility'), ('ons-verhaal', 'Ons verhaal'), ('werken-bij', 'Werken bij')]
+NAV = [('ons-verhaal', 'Ons verhaal'), ('werken-bij', 'Werken bij')]
 
 
 import json
@@ -56,14 +55,25 @@ def head(title, desc, slug, extra=''):
 <a class="skip" href="#inhoud">Naar de inhoud</a>
 '''
 
+DIENST_MENU = [('elektriciens', 'Elektriciens'), ('mechaniciens', 'Mechaniciens'), ('verhuizingen', 'Verhuizingen &amp; logistiek'),
+  ('kabelmanagement', 'Kabelmanagement &amp; werkplekken'), ('verlichting', 'Verlichting'), ('fietsenbeheer', 'Fietsenbeheer'), ('opslag', 'Opslag &amp; voorraad')]
+
 def header(slug):
     cur = ' aria-current="page"'
+    dienst_slugs = [d[0] for d in DIENST_MENU] + ['diensten', 'facility-diensten']
+    sub = ''.join(f'<a href="/{s}/"{cur if s == slug else ""}>{t}</a>' for s, t in DIENST_MENU)
     links = ''.join(f'<a href="/{s}/"{cur if s == slug else ""}>{t}</a>' for s, t in NAV)
     return f'''<header class="site-head">
   <div class="wrap">
     <a class="brand" href="/" aria-label="BV Geert Vos, naar de startpagina"><img src="/img/logo-nav.svg" alt="BV Geert Vos" width="236" height="64"></a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu"><span></span>Menu</button>
-    <nav class="nav" id="menu" aria-label="Hoofdmenu">{links}<a class="nav-cta" href="/contact/">Contact</a></nav>
+    <nav class="nav" id="menu" aria-label="Hoofdmenu">
+      <a href="/"{cur if slug == 'index' else ''}>Home</a>
+      <div class="sub{' sub-actief' if slug in dienst_slugs else ''}">
+        <a href="/diensten/" class="sub-link"{cur if slug == 'diensten' else ''}>Diensten</a><button class="sub-knop" type="button" aria-expanded="false" aria-label="Diensten openen"></button>
+        <div class="sub-menu">{sub}<a href="/facility-diensten/" class="sub-alle">Alle facility-diensten</a></div>
+      </div>
+      {links}<a class="nav-cta" href="/contact/">Contact</a></nav>
   </div>
 </header>
 '''
@@ -230,7 +240,7 @@ pages['index'] = dict(
       <p class="lead">Elektriciens en mechaniciens die voor langere tijd bij uw bedrijf aan de slag gaan, en alle facility-werk eromheen. Vanuit Meerhout, al bijna dertig jaar elke dag bij Nike. <strong class="geel">Wij regelen het.</strong></p>
       <div class="hero-cta">
         <a class="btn btn-geel" href="/contact/">Contact</a>
-        <a class="btn btn-licht" href="#diensten">Onze diensten</a>
+        <a class="btn btn-licht" href="/diensten/">Onze diensten</a>
       </div>
       <div class="hero-feit">
         <div><strong>Sinds 1996</strong>dagelijks aan het werk bij Nike</div>
@@ -678,6 +688,38 @@ pages['facility-diensten'] = dict(
 </section>
 ''' + faq_blok(FAQ_FAC) + '</main>\n' + CTA)
 
+# ---------------------------------------------------------------- DIENSTEN (overzicht)
+pages['diensten'] = dict(
+  extra=schema('diensten', 'Diensten'),
+  title='Onze diensten: techniek en facility | BV Geert Vos, Meerhout',
+  desc='Elektriciens en mechaniciens voor langere tijd bij uw bedrijf, plus verhuizingen, werkplekinrichting, verlichting, fietsenbeheer en opslag. Alle diensten van BV Geert Vos.',
+  body=kop('Alles op een rij', 'Onze diensten', 'Twee technische pijlers en vijf facility-takken. Van kleine klussen tot complete projecten, met één aanspreekpunt.', 'Diensten') + f'''
+<main id="inhoud">
+<section>
+  <div class="wrap">
+    <div class="sec-kop"><p class="label">Techniek</p><h2>Techniekers die blijven.</h2><p class="lead">Sinds 2024 stellen we elektriciens en mechaniciens tewerk bij andere bedrijven in de Kempen. Zelfstandig, met certificaten, materiaal en uitrusting, en bij voorkeur voor lange tijd bij dezelfde klant.</p></div>
+    <div class="pijlers">
+      <a class="pijler" href="/elektriciens/">
+        <img src="/img/werk/werkstation-kabelmanagement-1.webp" alt="" loading="lazy" width="440" height="591">
+        <div class="in"><p class="label">Pijler 1</p><h3>Elektriciens</h3><p>Voor langdurige samenwerkingen op uw locatie, of voor een kortere elektrische opdracht.</p><span class="meer">Meer over onze elektriciens</span></div>
+      </a>
+      <a class="pijler" href="/mechaniciens/">
+        <img src="/img/werk/lichtmast-verplaatsen-heftruck.webp" alt="" loading="lazy" width="347" height="557">
+        <div class="in"><p class="label">Pijler 2</p><h3>Mechaniciens</h3><p>Mechanisch onderhoud, montage en herstellingen, 100% afgewerkt.</p><span class="meer">Meer over onze mechaniciens</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+<section class="sec-paper">
+  <div class="wrap">
+    <div class="sec-kop"><p class="label">Facility &amp; logistiek</p><h2>Wat we al bijna dertig jaar elke dag doen.</h2><p class="lead">Vijf takken, één team. <a href="/facility-diensten/">Lees hoe onze facility-werking in elkaar zit</a>, of ga meteen naar een dienst.</p></div>
+    <ul class="takken">
+      {''.join(f'<li><a href="/{sl}/"><div class="tegel"><img src="{src}" alt="" loading="lazy" width="440" height="550"></div><h3>{nm}</h3><p>{tx}</p></a></li>' for (sl, src, tx), (_, nm, _, _) in zip(FAC_TEGELS, DIENSTEN))}
+    </ul>
+  </div>
+</section>
+''' + faq_blok(FAQ_FAC) + '</main>\n' + CTA)
+
 # ---------------------------------------------------------------- ONS VERHAAL
 pages['ons-verhaal'] = dict(
   extra=schema('ons-verhaal', 'Ons verhaal'),
@@ -886,6 +928,6 @@ for slug, p in pages.items():
     open(os.path.join(OUT, f'{slug}.html'), 'w').write(html)
     print(slug, len(html))
 
-urls = ['', 'elektriciens/', 'mechaniciens/', 'facility-diensten/', 'verhuizingen/', 'kabelmanagement/', 'verlichting/', 'fietsenbeheer/', 'opslag/', 'ons-verhaal/', 'werken-bij/', 'contact/', 'privacybeleid/']
+urls = ['', 'diensten/', 'elektriciens/', 'mechaniciens/', 'facility-diensten/', 'verhuizingen/', 'kabelmanagement/', 'verlichting/', 'fietsenbeheer/', 'opslag/', 'ons-verhaal/', 'werken-bij/', 'contact/', 'privacybeleid/']
 open(os.path.join(OUT, 'sitemap.xml'), 'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{DOMAIN}/{u}</loc></url>\n' for u in urls) + '</urlset>\n')
 open(os.path.join(OUT, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\nSitemap: {DOMAIN}/sitemap.xml\n')

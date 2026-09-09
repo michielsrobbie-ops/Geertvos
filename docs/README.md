@@ -4,6 +4,7 @@ Statisch HTML/CSS/JS, zelfde opzet als vandis-website (GitHub → Vercel, `clean
 
 - `index.html` — home: donkere hero waarin de logo-lamp aanflikkert (één keer per sessie, `sessionStorage`, respecteert `prefers-reduced-motion`), daaronder de strook met zeven schuine fototegels en de zwarte balk Flexibel/Betrouwbaar/Oplossingsgericht (opbouw van de bedrijfsbanner)
 - `elektriciens.html`, `mechaniciens.html` — de twee hoofdpijlers
+- `diensten.html` — overzicht van alle diensten (menu-item Diensten, met dropdown naar de 7 dienstpagina's)
 - `facility-diensten.html` — overzicht van de vijf takken; elke tak heeft een eigen pagina: `verhuizingen.html`, `kabelmanagement.html`, `verlichting.html`, `fietsenbeheer.html`, `opslag.html` (zelfde template `dienst_pagina()` in gen.py: intro, wat we doen, foto's, wat u mag verwachten, stappen, FAQ met schema, andere diensten)
 - `werken-bij.html` — spontaan solliciteren (FormSubmit)
 - `ons-verhaal.html`, `contact.html`, `bedankt.html` (na formulier), `privacybeleid.html`

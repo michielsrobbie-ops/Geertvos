@@ -15,6 +15,15 @@
     });
   }
 
+  // Diensten-submenu (klik/touch; hover werkt via CSS)
+  document.querySelectorAll('.sub-knop').forEach(function (knop) {
+    knop.addEventListener('click', function () {
+      var sub = knop.parentNode;
+      var open = sub.classList.toggle('open');
+      knop.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
   // Hero: de lamp flikkert één keer aan per bezoek, daarna staat hij gewoon aan
   var hero = document.querySelector('.hero');
   if (hero) {
