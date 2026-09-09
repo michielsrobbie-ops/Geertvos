@@ -9,6 +9,7 @@ Zaken die de site nog nodig heeft of die de klant moet bevestigen. Tijdelijke wa
 - Logo in hoge resolutie of vector, als dat bestaat. De SVG's in `img/` zijn nagetekend van de lage-resolutie jpg (potrace) en zien er scherp uit, maar een origineel bestand is altijd beter.
 
 ## Te bevestigen
+- Teller op de home rekent dagen sinds 1 januari 1996. Wat was de echte startdatum bij Nike (maand)? Dan zet ik die in `data-sinds`.
 - De vijf facility-pagina's (verhuizingen, kabelmanagement, verlichting, fietsenbeheer, opslag) zijn uitgeschreven op basis van de briefing plus redactionele invulling (bv. 'ook buiten de kantooruren', 'onderdelen op voorraad', 'periodieke onderhoudsrondes', 'tijdelijke opslag tijdens verhuizing'). Laten nalezen; wat niet klopt, halen we eruit.
 - Eén functie moet echt gehighlight worden — Robbie geeft die nog door.
 - Regio: overal staat nu "Kempen en omstreken". Klopt dat? Welke gemeentes/provincies bedienen ze echt?

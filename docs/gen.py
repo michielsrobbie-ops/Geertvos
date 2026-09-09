@@ -4,7 +4,7 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, 'site') if os.path.isdir(os.path.join(HERE, 'site')) else os.path.dirname(HERE)
 DOMAIN = 'https://geertvos.be'
-V = '20260909c'          # versie voor css/js — ophogen bij elke wijziging
+V = '20260910'          # versie voor css/js — ophogen bij elke wijziging
 TEL_LORENZO = '+32400000000'   # TIJDELIJK — echte nummer Lorenzo invullen
 TEL_PJ = '+32400000001'        # TIJDELIJK — echte nummer Pieter-Jan invullen
 TEL_LORENZO_TXT = '+32 400 00 00 00'
@@ -93,28 +93,13 @@ def kop(label, h1, lead, kruimel):
 </div>
 '''
 
-ICO_FLEX = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>'
-ICO_BETR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12l4-4h4l3 3-3 3-2-2"/><path d="M21 12l-4-4h-3"/><path d="M7 16l2 2h2l2-2"/><path d="M11 18l2 2h2l3-3"/></svg>'
-ICO_OPL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>'
-
-BALK = f'''<div class="balk">
-  <div class="wrap">
-    <ul>
-      <li>{ICO_FLEX}Flexibel.</li>
-      <li>{ICO_BETR}Betrouwbaar.</li>
-      <li>{ICO_OPL}Oplossingsgericht.</li>
-    </ul>
-    <p class="hand">Wij regelen het, zodat u zich kunt focussen op wat <em>écht belangrijk</em> is.</p>
-  </div>
-</div>
-'''
-
-CTA = f'''<div class="cta-band">
+CTA = f'''<div class="stroom"></div>
+<div class="cta-band">
   <div class="wrap">
     <div>
-      <p class="label">Van kleine klussen tot complete projecten</p>
-      <h2>Wij regelen het.</h2>
-      <p>Bel Lorenzo. Hij bekijkt samen met u wat u nodig hebt en wanneer we kunnen starten.</p>
+      <p class="label">Contact</p>
+      <h2>Zeg wat u nodig hebt.</h2>
+      <p>Lorenzo bekijkt samen met u wat er moet gebeuren en wanneer we kunnen starten.</p>
     </div>
     <div class="knoppen">
       <a class="btn btn-geel" href="/contact/">Contact</a>
@@ -128,7 +113,7 @@ FOOT = f'''<footer class="site-foot">
   <div class="wrap">
     <div>
       <img src="/img/logo-nav.svg" alt="BV Geert Vos" width="258" height="70">
-      <p>Uw partner in techniek en facility management. Sinds 1996 dagelijks aan het werk bij Nike, sinds 2024 ook bij andere bedrijven.</p>
+      <p>Elektriciens, mechaniciens en facility-diensten vanuit Meerhout. Sinds 1996 dagelijks aan het werk bij Nike, sinds 2024 ook bij andere bedrijven.</p>
     </div>
     <div>
       <p class="foot-kop">Diensten</p>
@@ -177,7 +162,13 @@ def fig(src, alt, cap=''):
     return f'<figure><img src="{src}" alt="{alt}" loading="lazy" width="460" height="600"><figcaption>{cap or alt}</figcaption></figure>'
 
 def voor_na(voor, na, cap):
-    return f'<div class="voorna"><figure><img src="{voor[0]}" alt="{voor[1]}" loading="lazy" width="460" height="600"><figcaption><b>Voor</b> {voor[1]}</figcaption></figure><figure><img src="{na[0]}" alt="{na[1]}" loading="lazy" width="460" height="600"><figcaption><b>Na</b> {na[1]}</figcaption></figure><p class="voorna-cap">{cap}</p></div>'
+    return (f'<div class="vergelijk" data-vergelijk><div class="vergelijk-beeld">'
+            f'<img class="vergelijk-na" src="{na[0]}" alt="Na: {na[1]}" loading="lazy" width="460" height="600">'
+            f'<div class="vergelijk-voor"><img src="{voor[0]}" alt="Voor: {voor[1]}" loading="lazy" width="460" height="600"></div>'
+            f'<div class="vergelijk-lijn" aria-hidden="true"><span></span></div>'
+            f'<span class="vergelijk-tag vergelijk-tag-voor" aria-hidden="true">Voor</span><span class="vergelijk-tag vergelijk-tag-na" aria-hidden="true">Na</span>'
+            f'<input type="range" min="0" max="100" value="50" aria-label="Schuif tussen voor en na"></div>'
+            f'<p class="voorna-cap">{cap}</p></div>')
 
 WERK_ELEK = '''<section>
   <div class="wrap">
@@ -202,21 +193,6 @@ def ph(tekst, cls=''):
 def foto(src, alt, cls=''):
     return f'<div class="foto {cls}"><img src="{src}" alt="{alt}" loading="lazy" width="460" height="520"></div>'
 
-# Tegels in de hero: (href, label, foto, alt) — foto's zijn nu lage-resolutie uitsneden uit de banner
-TEGELS = [
-  ('/elektriciens/', 'Elektriciens', '/img/werk/werkstation-kabelmanagement-1.webp', 'Afgewerkt kabelmanagement aan een werkstation'),
-  ('/mechaniciens/', 'Mechaniciens', '/img/werk/lichtmast-verplaatsen-heftruck.webp', 'Lichtmast verplaatsen met de heftruck'),
-  ('/verhuizingen/', 'Verhuizingen &amp; logistiek', '/img/foto/ph-verhuizingen.jpg', 'Twee medewerkers van Geert Vos bij een interne verhuizing'),
-  ('/kabelmanagement/', 'Kabelmanagement &amp; werkplekken', '/img/werk/kabelgoot-kabelmanagement.webp', 'Kabelgoot met netjes weggewerkte kabels'),
-  ('/verlichting/', 'Verlichting', '/img/werk/magazijn-verlichting-hoogwerker-2.webp', 'Verlichting vervangen in een magazijn met de hoogwerker'),
-  ('/fietsenbeheer/', 'Fietsen beheren &amp; onderhouden', '/img/foto/ph-fietsen.jpg', 'Rij bedrijfsfietsen'),
-  ('/opslag/', 'Opslag &amp; voorraad', '/img/werk/magazijn-verlichting-hoogwerker-1.webp', 'Stellingen in een magazijn'),
-]
-def tegel_img(src, alt):
-    if src:
-        return f'<img src="{src}" alt="{alt}" loading="lazy" width="300" height="400">'
-    return '<div class="foto-ph" style="position:absolute;inset:0;clip-path:none"><span>Foto volgt</span></div>'
-
 pages = {}
 
 # ---------------------------------------------------------------- HOME
@@ -235,15 +211,15 @@ pages['index'] = dict(
   <div class="hero-licht"></div>
   <div class="wrap">
     <div class="hero-tekst">
-      <p class="label label-licht">Van kleine klussen tot complete projecten</p>
-      <h1>Uw partner in techniek &amp; facility.</h1>
-      <p class="lead">Elektriciens en mechaniciens die voor langere tijd bij uw bedrijf aan de slag gaan, en alle facility-werk eromheen. Vanuit Meerhout, al bijna dertig jaar elke dag bij Nike. <strong class="geel">Wij regelen het.</strong></p>
+      <p class="label label-licht">Techniek en facility, Meerhout</p>
+      <h1>Techniekers die blijven.</h1>
+      <p class="lead">Elektriciens en mechaniciens die voor langere tijd bij uw bedrijf aan de slag gaan, en alle facility-werk eromheen: verhuizingen, werkplekken, verlichting, fietsen en opslag. Vanuit Meerhout, al bijna dertig jaar elke dag bij Nike.</p>
       <div class="hero-cta">
         <a class="btn btn-geel" href="/contact/">Contact</a>
         <a class="btn btn-licht" href="/diensten/">Onze diensten</a>
       </div>
       <div class="hero-feit">
-        <div><strong>Sinds 1996</strong>dagelijks aan het werk bij Nike</div>
+        <div><strong><span class="teller" data-sinds="1996-01-01">0</span> dagen</strong>aan het werk bij Nike, sinds 1996</div>
         <div><strong>±11 medewerkers</strong>elke dag op één site</div>
         <div><strong>Meerhout</strong>Kempen, België</div>
       </div>
@@ -256,20 +232,11 @@ pages['index'] = dict(
   <div class="stroom hero-stroom"></div>
 </section>
 
-<section class="sec-strook" id="diensten">
-  <div class="wrap">
-    <ul class="strook" aria-label="Onze diensten">
-      {''.join(f'<li><a href="{h}"><p class="label">{l}</p><div class="tegel">{tegel_img(s,a)}</div></a></li>' for h,l,s,a in TEGELS)}
-    </ul>
-  </div>
-</section>
-{BALK}
-
-<section>
+<section id="diensten">
   <div class="wrap">
     <div class="sec-kop">
       <p class="label">Onze twee pijlers</p>
-      <h2>Techniekers die blijven.</h2>
+      <h2>Twee pijlers, één manier van werken.</h2>
       <p class="lead">Sinds 2024 stellen we elektriciens en mechaniciens tewerk bij andere bedrijven in de Kempen en omstreken. Ze werken er zelfstandig, met de certificaten, het materiaal en de uitrusting die de opdracht vraagt, en bij voorkeur voor lange tijd bij dezelfde klant. Elektrieker, onderhoudstechnieker, mecanicien: zeg wat u nodig hebt, wij zoeken het profiel.</p>
     </div>
     <div class="pijlers">
@@ -332,9 +299,9 @@ pages['index'] = dict(
       <p class="lead">Orde, stiptheid en kwaliteit. En na afloop een werkplek die proper en ordelijk achterblijft. Daarom werken klanten niet enkele weken met ons, maar vele jaren.</p>
     </div>
     <div class="waarden">
-      <div><h3>Flexibel</h3><p>Vriendelijk, flexibel en met een positieve ingesteldheid. Onze mensen komen graag, en dat merkt u op de werkvloer.</p></div>
-      <div><h3>Betrouwbaar</h3><p>Een jong en hecht team binnen een duidelijke organisatie. Ervaren teamleads zorgen dat elke opdracht correct wordt opgevolgd.</p></div>
-      <div><h3>Oplossingsgericht</h3><p>Elke technieker heeft de certificaten, het materiaal en de uitrusting om zelfstandig te werken en af te werken.</p></div>
+      <div><h3>Vriendelijk en flexibel</h3><p>Een positieve ingesteldheid op de werkvloer. Onze mensen komen graag, en dat merkt u.</p></div>
+      <div><h3>Zelfstandig, met opvolging</h3><p>Elke technieker heeft de certificaten, het materiaal en de uitrusting om zelfstandig te werken. Ervaren teamleads volgen elke opdracht correct op.</p></div>
+      <div><h3>Voor de lange termijn</h3><p>We richten ons op samenwerkingen waarbij onze techniekers voor langere periodes bij dezelfde klant werken. Kortere opdrachten doen we er graag bij.</p></div>
     </div>
   </div>
 </section>
@@ -560,7 +527,7 @@ pages['kabelmanagement'] = dienst_pagina('kabelmanagement', DIENSTEN[1][1], DIEN
         ('Meubilair breakrooms en restaurants', 'Tafels, stoelen en ander meubilair in gemeenschappelijke ruimtes onderhouden, herstellen en vervangen.')]),
   punten=['Werkplek klaar om te gebruiken, inclusief stroom en data', 'Kabels weggewerkt volgens de regels van de kunst', 'Herstelling van elektrische bureaus en stoelen in eigen beheer', 'Dagelijks bereikbaar via ticketsysteem of telefoon', 'Werkplek proper en ordelijk achtergelaten'],
   faq=[
-    ('Doen jullie ook kleine aanpassingen, zoals één bureau verplaatsen?', 'Ja. Bij Nike komen zulke tickets dagelijks binnen. Van kleine klussen tot complete projecten: wij regelen het.'),
+    ('Doen jullie ook kleine aanpassingen, zoals één bureau verplaatsen?', 'Ja. Bij Nike komen zulke tickets dagelijks binnen. Klein of groot, we plannen het in.'),
     ('Herstellen jullie elektrische bureaus?', 'Ja, beheer en onderhoud van elektrische bureaus en bureaustoelen hoort bij ons dagelijks werk.'),
     ('Waarom is kabelmanagement belangrijk?', 'Losse of geplette kabels raken beschadigd en kunnen uitbranden. Netjes weggewerkte kabels zijn veiliger, gaan langer mee en zijn makkelijker aan te passen.'),
     ('Kunnen jullie een hele afdeling inrichten?', 'Ja. Samen met onze verhuisploeg en onze elektriciens richten we complete afdelingen in, van meubilair tot bekabeling.'),
@@ -648,7 +615,7 @@ pages['opslag'] = dienst_pagina('opslag', DIENSTEN[4][1], DIENSTEN[4][2], DIENST
 
 # --- overzicht
 FAQ_FAC = [
-  ('Doen jullie ook kleine klussen?', 'Ja. Van een deurklink herstellen tot een volledige interne verhuizing: van kleine klussen tot complete projecten. Wij regelen het.'),
+  ('Doen jullie ook kleine klussen?', 'Ja. Het begon in 1996 met een deurklink. Van een kleine herstelling tot een volledige interne verhuizing: we plannen het in.'),
   ('Hoe komen opdrachten bij jullie binnen?', 'Bij Nike via een online ticketsysteem waarin dagelijks opdrachten binnenkomen; onze medewerkers en teamleads plannen en voeren ze uit. Voor andere klanten spreken we af wat het beste werkt.'),
   ('Kunnen jullie meerdere diensten combineren?', 'Dat is net onze sterkte: één team dat verhuist, werkplekken inricht, verlichting vervangt, fietsen onderhoudt en het magazijn beheert. Eén aanspreekpunt, Lorenzo.'),
   ('Werken jullie ook buiten Nike?', 'Ja. Sinds 2024 zetten we onze ervaring ook in bij andere bedrijven in de Kempen en omstreken.'),
@@ -693,7 +660,7 @@ pages['diensten'] = dict(
   extra=schema('diensten', 'Diensten'),
   title='Onze diensten: techniek en facility | BV Geert Vos, Meerhout',
   desc='Elektriciens en mechaniciens voor langere tijd bij uw bedrijf, plus verhuizingen, werkplekinrichting, verlichting, fietsenbeheer en opslag. Alle diensten van BV Geert Vos.',
-  body=kop('Alles op een rij', 'Onze diensten', 'Twee technische pijlers en vijf facility-takken. Van kleine klussen tot complete projecten, met één aanspreekpunt.', 'Diensten') + f'''
+  body=kop('Alles op een rij', 'Onze diensten', 'Twee technische pijlers en vijf facility-takken, met één aanspreekpunt.', 'Diensten') + f'''
 <main id="inhoud">
 <section>
   <div class="wrap">
@@ -840,7 +807,7 @@ pages['contact'] = dict(
   extra=schema('contact', 'Contact'),
   title='Contact | BV Geert Vos, Meerhout',
   desc='Neem contact op met BV Geert Vos, Bevrijdingslaan 256 in Meerhout. Bel Lorenzo of Pieter-Jan, of stuur een bericht via het formulier. We antwoorden snel.',
-  body=kop('Wij regelen het', 'Contact', 'Bel Lorenzo, hij is uw eerste aanspreekpunt. Of stuur een bericht, dan nemen we contact met u op.', 'Contact') + f'''
+  body=kop('Neem contact op', 'Contact', 'Bel Lorenzo, hij is uw eerste aanspreekpunt. Of stuur een bericht, dan nemen we contact met u op.', 'Contact') + f'''
 <main id="inhoud">
 <section>
   <div class="wrap twee" style="align-items:start">
