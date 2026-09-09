@@ -4,7 +4,7 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, 'site') if os.path.isdir(os.path.join(HERE, 'site')) else os.path.dirname(HERE)
 DOMAIN = 'https://geertvos.be'
-V = '20260910'          # versie voor css/js — ophogen bij elke wijziging
+V = '20260910b'         # versie voor css/js — ophogen bij elke wijziging
 TEL_LORENZO = '+32400000000'   # TIJDELIJK — echte nummer Lorenzo invullen
 TEL_PJ = '+32400000001'        # TIJDELIJK — echte nummer Pieter-Jan invullen
 TEL_LORENZO_TXT = '+32 400 00 00 00'
@@ -139,8 +139,8 @@ FOOT = f'''<footer class="site-foot">
     <div>
       <p class="foot-kop">Contact</p>
       <address>BV Geert Vos<br>Bevrijdingslaan 256<br>2450 Meerhout, België<br>
-      <a href="tel:{TEL_LORENZO}">Lorenzo: {TEL_LORENZO_TXT}</a><br>
-      <a href="tel:{TEL_PJ}">Pieter-Jan: {TEL_PJ_TXT}</a><br>
+      <a href="tel:{TEL_LORENZO}">{TEL_LORENZO_TXT}</a><br>
+      <a href="tel:{TEL_PJ}">{TEL_PJ_TXT}</a><br>
       <a href="mailto:{MAIL}">{MAIL}</a></address>
     </div>
   </div>
@@ -806,21 +806,17 @@ pages['werken-bij'] = dict(
 pages['contact'] = dict(
   extra=schema('contact', 'Contact'),
   title='Contact | BV Geert Vos, Meerhout',
-  desc='Neem contact op met BV Geert Vos, Bevrijdingslaan 256 in Meerhout. Bel Lorenzo of Pieter-Jan, of stuur een bericht via het formulier. We antwoorden snel.',
-  body=kop('Neem contact op', 'Contact', 'Bel Lorenzo, hij is uw eerste aanspreekpunt. Of stuur een bericht, dan nemen we contact met u op.', 'Contact') + f'''
+  desc='Neem contact op met BV Geert Vos, Bevrijdingslaan 256 in Meerhout. Bel ons of stuur een bericht via het formulier. We antwoorden snel.',
+  body=kop('Neem contact op', 'Contact', 'Bel ons, of stuur een bericht, dan nemen we contact met u op.', 'Contact') + f'''
 <main id="inhoud">
 <section>
   <div class="wrap twee" style="align-items:start">
     <div>
-      <div class="personen">
-        <div class="persoon eerst">
-          <div class="init" aria-hidden="true">L</div>
-          <div><strong>Lorenzo</strong><div class="rol">Eerste aanspreekpunt</div><a class="tel" href="tel:{TEL_LORENZO}">{TEL_LORENZO_TXT}</a></div>
-        </div>
-        <div class="persoon">
-          <div class="init" aria-hidden="true">PJ</div>
-          <div><strong>Pieter-Jan</strong><div class="rol">Aanspreekpunt</div><a class="tel" href="tel:{TEL_PJ}">{TEL_PJ_TXT}</a></div>
-        </div>
+      <div class="bel-kaart">
+        <strong>Bel ons</strong>
+        <p class="rol">We zijn bereikbaar op</p>
+        <a class="tel" href="tel:{TEL_LORENZO}">{TEL_LORENZO_TXT}</a>
+        <a class="tel" href="tel:{TEL_PJ}">{TEL_PJ_TXT}</a>
       </div>
       <h2 style="margin-top:40px;font-size:26px">BV Geert Vos</h2>
       <address style="font-style:normal;line-height:1.8;margin-top:8px;color:var(--grijs)">Bevrijdingslaan 256<br>2450 Meerhout, België<br>BTW BE 0862.515.981<br><a href="mailto:{MAIL}">{MAIL}</a></address>
@@ -859,8 +855,8 @@ pages['bedankt'] = dict(
   title='Bedankt voor uw bericht | BV Geert Vos',
   desc='Uw bericht is verstuurd. We nemen zo snel mogelijk contact met u op.',
   extra='<meta name="robots" content="noindex">',
-  body=kop('Contact', 'Bedankt', 'Uw bericht is aangekomen. Lorenzo of Pieter-Jan neemt zo snel mogelijk contact met u op.', 'Contact') + f'''
-<main id="inhoud"><section><div class="wrap"><p class="lead">Dringend? Bel Lorenzo op <a class="tel" href="tel:{TEL_LORENZO}">{TEL_LORENZO_TXT}</a>.</p><p style="margin-top:24px"><a class="btn btn-ink" href="/">Terug naar de startpagina</a></p></div></section></main>
+  body=kop('Contact', 'Bedankt', 'Uw bericht is aangekomen. We nemen zo snel mogelijk contact met u op.', 'Contact') + f'''
+<main id="inhoud"><section><div class="wrap"><p class="lead">Dringend? Bel ons op <a class="tel" href="tel:{TEL_LORENZO}">{TEL_LORENZO_TXT}</a> of <a class="tel" href="tel:{TEL_PJ}">{TEL_PJ_TXT}</a>.</p><p style="margin-top:24px"><a class="btn btn-ink" href="/">Terug naar de startpagina</a></p></div></section></main>
 ''')
 
 pages['404'] = dict(

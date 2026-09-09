@@ -61,6 +61,18 @@
         hero.style.removeProperty('--mx');
         hero.style.removeProperty('--my');
       });
+    } else if (!rustig && hero.classList.contains('flik')) {
+      // Geen muis: het licht veegt één keer mee binnen als de lamp aanflikkert
+      var t0v = null, duurVeeg = 1400;
+      var veeg = function (t) {
+        if (!t0v) t0v = t;
+        var p = Math.min(1, (t - t0v) / duurVeeg);
+        var e = 1 - Math.pow(1 - p, 3);
+        hero.style.setProperty('--mx', (12 + 60 * e).toFixed(1) + '%');
+        hero.style.setProperty('--my', (28 + 17 * e).toFixed(1) + '%');
+        if (p < 1) window.requestAnimationFrame(veeg);
+      };
+      window.setTimeout(function () { window.requestAnimationFrame(veeg); }, 1500);
     }
 
     // De lamp knipoogt als je eroverheen gaat (of erop tikt)

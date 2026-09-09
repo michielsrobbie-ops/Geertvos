@@ -1,6 +1,6 @@
 # Open vragen en aan te leveren — BV Geert Vos
 
-Zaken die de site nog nodig heeft of die de klant moet bevestigen. Tijdelijke waarden in de code: `+32 400 00 00 00` (Lorenzo), `+32 400 00 00 01` (Pieter-Jan) en `info@geertvos.be`.
+Zaken die de site nog nodig heeft of die de klant moet bevestigen. Tijdelijke waarden in de code: `+32 400 00 00 00` en `+32 400 00 00 01` (`TEL_LORENZO`/`TEL_PJ` in `gen.py` — variabelenamen intern, maar op de site zelf staan er nu geen namen meer bij, in afwachting van punt hieronder) en `info@geertvos.be`.
 
 ## Aan te leveren
 - Telefoonnummer Lorenzo en Pieter-Jan → `docs/gen.py` (TEL_LORENZO / TEL_PJ + de _TXT-varianten), daarna `python3 docs/gen.py`. Nu staan er tijdelijke +32 400-nummers in.
@@ -21,6 +21,7 @@ Zaken die de site nog nodig heeft of die de klant moet bevestigen. Tijdelijke wa
 - Aanspreekvorm: nu "u". Wil de klant "je"?
 - Elektriciens/mechaniciens: welke certificaten precies (BA4/BA5, VCA, ...), welke sectoren, welke regio? Nu bewust algemeen gehouden ("de nodige certificaten"), want de briefing zegt niet meer.
 - Werkwijze in 3 stappen (bel Lorenzo → inzet → opvolging teamleads) is een redactionele invulling van de briefing; laten nalezen.
+- Contactpagina en footer noemen Lorenzo/Pieter-Jan niet meer bij naam (gewoon twee telefoonnummers), in afwachting van de afspraak hierover. Op de rest van de site (CTA-blok "Lorenzo bekijkt samen met u...", FAQ's, "U belt Lorenzo"-stap, werken-bij-pagina) staat de naam Lorenzo nog overal. Zodra bekend is hoe dat definitief geregeld wordt, pas ik dat in één keer overal aan.
 - "Werken bij"-pagina met sollicitatieformulier gewenst?
 - Domein geertvos.be: al geregistreerd? Waar staat de DNS? (Nodig om te koppelen aan Vercel.)
 - OG-afbeelding (`img/og.png`) is nu een screenshot van de hero; vervangen door een echte foto zodra die er is.
