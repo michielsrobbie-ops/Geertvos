@@ -2,16 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://geertvos.be/</loc></url>
   <url><loc>https://geertvos.be/diensten/</loc></url>
+  <url><loc>https://geertvos.be/servicetechniekers/</loc></url>
   <url><loc>https://geertvos.be/elektriciens/</loc></url>
   <url><loc>https://geertvos.be/mechaniciens/</loc></url>
-  <url><loc>https://geertvos.be/facility-diensten/</loc></url>
+  <url><loc>https://geertvos.be/facilityprojecten/</loc></url>
   <url><loc>https://geertvos.be/verhuizingen/</loc></url>
   <url><loc>https://geertvos.be/kabelmanagement/</loc></url>
   <url><loc>https://geertvos.be/verlichting/</loc></url>
   <url><loc>https://geertvos.be/fietsenbeheer/</loc></url>
   <url><loc>https://geertvos.be/opslag/</loc></url>
   <url><loc>https://geertvos.be/ons-verhaal/</loc></url>
-  <url><loc>https://geertvos.be/werken-bij/</loc></url>
+  <url><loc>https://geertvos.be/vacatures/</loc></url>
   <url><loc>https://geertvos.be/contact/</loc></url>
   <url><loc>https://geertvos.be/privacybeleid/</loc></url>
 </urlset>

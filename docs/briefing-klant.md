@@ -83,3 +83,23 @@ geertvos.be
 - Professioneel e-mailadres (klant regelt zelf)
 - Foto's (bestaande set via Lorenzo + nieuwe shoot: team, techniekers aan het werk, bestelwagens, verhuiswagens, magazijn)
 - Logo in hoge resolutie / vector (nu alleen lage-resolutie jpg)
+
+
+---
+
+# Feedback ronde 2 (25 september 2026)
+
+Van Lorenzo, samengevat zoals ontvangen (het originele document was een screenshot met opmerkingen):
+
+- Home ziet er top uit en is perfect opgebouwd.
+- Hero-titel "Techniekers die blijven." vervangen door iets als: "Al 30 jaar service en techniek waarop je kunt rekenen".
+- Hero-tekst: "Elektriciens en mecaniciens voor langdurige technische ondersteuning, facility en projecten. Van Meerhout tot bij onze klanten in heel Limburg en de Kempen."
+- Naast Contact en Diensten ook een knop **Vacatures**: hierop de vacatures die via Robbie/Max worden verspreid, en eventueel een pagina met de paar vragen die gesteld worden, plus cv.
+- Bij de cijfers: "al 30 jaar elke dag aanwezig bij Nike of dergelijke" klinkt beter dan het aantal dagen.
+- Twee pijlers: **facilityprojecten** en **servicetechniekers**.
+- De knop Diensten klopt niet: er zijn twee diensten. Servicetechniekers = techniekers (elektrisch en mechanisch) uitlenen aan bedrijven voor lange projecten; niet iedereen kan voor elke klus terecht, want ze zoeken langdurige projecten en werven daarvoor personeel aan. Naar personeel zijn ze steeds op zoek. Projecten = enkel voor langere of grotere opdrachten: verhuizingen en logistiek, kabelmanagement en werkplekken, verlichting.
+- Het Nike-verhaal bevat al deze facilitydiensten, maar wordt niet overal aangeboden. Het maakt het bedrijf sterk en is een groot deel van de inkomsten, maar is meer een gesloten verhaal.
+- Contactblok algemener: contacteer onze servicecoördinator, reactie binnen 24 uur.
+- Nadruk op een hecht en bereikbaar team (de key voor firma Vos), ook voor klanten: de verantwoordelijkheid hoog bij onszelf leggen.
+- Nog enkele foto's volgende week.
+- In alle teksten benadrukken dat ze enkel voor lange projecten gaan.
