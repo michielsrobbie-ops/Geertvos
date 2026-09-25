@@ -31,7 +31,7 @@ Zaken die de site nog nodig heeft of die de klant moet bevestigen.
 Verwerkt: nieuwe hero-titel en -tekst, twee pijlers (servicetechniekers en facilityprojecten), Vacatures-knop en -pagina, "30 jaar" in plaats van de dagenteller, contactblok met servicecoördinator en 24 uur, nadruk op hecht en bereikbaar team, en overal "enkel voor langdurige projecten". Daarmee zijn ook de vragen over regio ("Limburg en de Kempen") en de naam Lorenzo in de teksten beantwoord: overal staat nu "onze servicecoördinator".
 
 Nog te bevestigen of aan te leveren:
-- **Foto's**: Lorenzo bezorgt volgende week enkele foto's. Zelfde bestandsnamen houden, of paden aanpassen in gen.py.
+- **Foto's**: 22 van de 31 aangeleverde foto's zijn verwerkt (team, verhuiswagen met laadlift, fietsen, magazijn, kabelmanagement, verlichting). Niet gebruikt: nummerplaten zichtbaar, schermafbeeldingen en privéfoto's. Nog gewenst: een foto van de fietsenmaker aan het werk, een technieker op de vacaturepagina, en het team in werkkledij voor de OG-afbeelding. Lorenzo bevestigen dat de mensen op de teamfoto's op de site mogen.
 - **Cv-upload** via FormSubmit na livegang testen (bijlage en groottelimiet).
 - **Nike** wordt bij naam genoemd (hero-cijfer, verhaal). Lorenzo schreef zelf "Nike of dergelijke", dus bevestigen dat de naam op de site mag.
 - Eerder open en nog steeds: telefoonnummers, e-mailadres, domein/DNS, nalezen van alle teksten.
@@ -50,5 +50,6 @@ Bewust anders dan de aangeleverde tekst, laat Lorenzo nalezen:
 - **Loon** staat als "Tot € 4.000 bruto, op basis van je ervaring". Bevestigen dat dit per maand is en of dat zo mag.
 - **Bedrijfswagen "met inbreng"** is weggelaten omdat onduidelijk is wat dat betekent. Er staat "bedrijfsbus mogelijk, bus van de zaak".
 - "Familiebedrijf, fijn team zonder hiërarchie" is omgezet naar "korte lijnen", omdat de rest van de site ervaren teamleads noemt.
-- Foto bij de vacature is tijdelijk (heftruck). Vervangen door een echte foto van een technieker.
+- De foto bij de vacature is het team dat door de gang loopt. Een foto van een technieker aan het werk zou beter passen.
 - Sluitingsdatum en het echte plaatsingsdatum voor Google for Jobs invullen zodra bekend.
+- Sollicitatie: een cv uploaden of de werkervaring uittypen is verplicht (één van de twee). Een motivatiebrief is er niet.

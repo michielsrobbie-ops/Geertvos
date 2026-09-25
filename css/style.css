@@ -433,3 +433,19 @@ form{display:grid;gap:16px}
 .andere{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
 .andere a{display:inline-block;padding:12px 18px;border:2px solid var(--ink);border-radius:var(--r);text-decoration:none;font-weight:600;font-size:15px}
 .andere a:hover{background:var(--ink);color:#fff}
+
+/* Teamstrook en foto-uitsnedes */
+.team-strip{display:grid;grid-template-columns:2fr 1fr 1fr;gap:clamp(12px,2vw,24px);margin:0 0 56px}
+.team-strip-2{grid-template-columns:2fr 1fr}
+.team-strip figure{margin:0;border-radius:10px;overflow:hidden;background:var(--paper);height:clamp(260px,32vw,420px)}
+.team-strip img{width:100%;height:100%;object-fit:cover}
+@media(max-width:700px){.team-strip,.team-strip-2{grid-template-columns:1fr}.team-strip figure{height:280px}}
+.foto-truck img{object-position:50% 30%}
+
+/* Cv of ervaring (vacature) */
+.veld-uitleg{margin:0;color:var(--ink-2);font-size:15px}
+.veld .cv-upload{display:block;border:2px dashed var(--geel-diep);border-radius:10px;padding:18px 20px;background:var(--paper);cursor:pointer;font-weight:500}
+.cv-titel{display:block;font-weight:700;font-size:17px}
+.cv-sub{display:block;font-size:14px;color:var(--steel);margin-bottom:4px}
+.veld .cv-upload input{border:0;padding:8px 0 0;background:transparent;box-shadow:none;width:100%}
+.form-fout{margin:0;color:#b3261e;font-weight:600}

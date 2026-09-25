@@ -142,7 +142,21 @@
   // Formulieren
   var form = document.querySelector('form[data-gv]');
   if (form) {
-    form.addEventListener('submit', function () {
+    form.addEventListener('submit', function (e) {
+      // Sollicitatie: een cv of een uitgetypte werkervaring is nodig, één van de twee is genoeg.
+      var cv = form.querySelector('input[type=file]');
+      var tekst = form.querySelector('[data-of-cv]');
+      var fout = form.querySelector('.form-fout');
+      if (cv && tekst && fout) {
+        var heeftCv = cv.files && cv.files.length > 0;
+        if (!heeftCv && tekst.value.replace(/\s+/g, ' ').trim().length < 20) {
+          e.preventDefault();
+          fout.hidden = false;
+          tekst.focus();
+          return;
+        }
+        fout.hidden = true;
+      }
       var btn = form.querySelector('button[type=submit]');
       if (btn) { btn.disabled = true; btn.textContent = 'Versturen…'; }
     });

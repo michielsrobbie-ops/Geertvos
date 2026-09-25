@@ -15,8 +15,7 @@ Statisch HTML/CSS/JS, zelfde opzet als vandis-website (GitHub → Vercel, `clean
 - `css/style.css`, `js/main.js` — bij wijziging de `?v=` versiedatum in alle html-bestanden ophogen
 - `fonts/` — Bricolage Grotesque, zelf gehost, OFL (caveat-*.woff2 is niet meer in gebruik en mag weg). Geen Google Fonts, dus geen cookiebanner nodig.
 - `img/logo*.svg`, `bulb*.svg`, `favicon.svg` — nagetekend uit de jpg; `logo-nav.svg` (wit, uitlopende lijnen) in header en footer, `bulb.svg` inline in de hero
-- `img/werk/*.webp` — 16 werkfoto's van de klant (uit Werkzaamheden Vos.pages): lichtmasten, kabelmanagement voor/na, uitgebrande kabels, verlichting, straatverlichting. Galerij op elektriciens.html.
-- `img/foto/ph-*.jpg` — TIJDELIJK: lage-resolutie uitsneden uit de banner (nog gebruikt voor verhuizing, fietsen, team). Vervangen door de echte foto's zodra Robbie die heeft (zelfde bestandsnamen houden, of paden aanpassen in docs/gen.py en opnieuw genereren)
+- Foto's: `img/werk/*.webp` (techniek: kabels, verlichting, hoogwerkers; `-hd`-bestanden zijn de scherpe versies) en `img/team/*.webp` (team, verhuiswagen, fietsen, magazijn). Beide komen uit de foto's van de klant (WhatsApp-export in `img/foto/fotos/`, staat in .gitignore en wordt niet gepubliceerd). Nieuwe foto's toevoegen: in die map zetten, `docs/optimize_photos.py` uitbreiden en draaien, daarna de paden in `docs/gen.py` aanpassen. Bestandsnamen in `img/` krijgen een jaar cache: bij een nieuwe versie van dezelfde foto een nieuwe bestandsnaam gebruiken. `img/og-team.jpg` is de afbeelding bij delen op social media.
 - `docs/briefing-klant.md` — letterlijke briefing; `docs/open-vragen-klant.md` — wat nog ontbreekt
 
 Alle html wordt gegenereerd door `docs/gen.py` (header, footer, teksten, telefoonnummers staan daar één keer). Wijzigen → `python3 docs/gen.py` draaien vanuit de projectmap. Rechtstreeks in de html editen kan ook, maar wordt overschreven bij de volgende generatie.

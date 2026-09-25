@@ -4,7 +4,7 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, 'site') if os.path.isdir(os.path.join(HERE, 'site')) else os.path.dirname(HERE)
 DOMAIN = 'https://geertvos.be'
-V = '20260925e'         # versie voor css/js — ophogen bij elke wijziging
+V = '20260925f'         # versie voor css/js — ophogen bij elke wijziging
 # Nummers bevestigd door de klant (25 sept). Geen namen op de site, wel waarvoor je welk nummer belt.
 TEL_TECH = '+32495460646'       # servicetechniekers (Lorenzo)
 TEL_PROJ = '+32477416045'       # facilityprojecten (Pieter-Jan)
@@ -45,7 +45,7 @@ def head(title, desc, slug, extra=''):
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{url}">
-<meta property="og:image" content="{DOMAIN}/img/og.jpg">
+<meta property="og:image" content="{DOMAIN}/img/og-team.jpg">
 <meta property="og:locale" content="nl_BE">
 <meta name="theme-color" content="#141518">
 <link rel="preload" href="/fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -188,11 +188,15 @@ WERK_ELEK = '''<section>
     </div>
     <h3 class="gal-kop">Verlichting en lichtmasten</h3>
     <div class="galerij galerij-4">
-      ''' + fig('/img/werk/magazijn-verlichting-hoogwerker-1.webp', 'Verlichting vervangen tussen magazijnstellingen met de hoogwerker') + fig('/img/werk/magazijn-verlichting-hoogwerker-2.webp', 'Verlichting vervangen in een magazijn') + fig('/img/werk/straatverlichting-hoogwerker-2.webp', 'Straatverlichting vervangen met de hoogwerker') + fig('/img/werk/lichtmasten-op-vrachtwagen.webp', 'Mobiele lichtmasten verplaatsen en verhuizen') + '''
+      ''' + fig('/img/werk/magazijn-verlichting-hoogwerker-1-hd.webp', 'Verlichting vervangen tussen magazijnstellingen met de hoogwerker') + fig('/img/werk/magazijn-verlichting-hoogwerker-2-hd.webp', 'Verlichting vervangen in een magazijn') + fig('/img/werk/straatverlichting-hoogwerker-2-hd.webp', 'Straatverlichting vervangen met de hoogwerker') + fig('/img/werk/lichtmasten-op-vrachtwagen.webp', 'Mobiele lichtmasten verplaatsen en verhuizen') + '''
     </div>
   </div>
 </section>
 '''
+
+def team_strip(items, cls=''):
+    return f'<div class="team-strip {cls}">' + ''.join(
+        f'<figure><img src="{src}" alt="{alt}" loading="lazy" width="700" height="520"></figure>' for src, alt in items) + '</div>'
 
 def ph(tekst, cls=''):
     return f'<div class="foto foto-ph {cls}"><span>{tekst}</span></div>'
@@ -210,9 +214,9 @@ DIENSTEN = [
   ('verlichting', 'Verlichting vervangen &amp; onderhouden', 'Verlichting vervangen en onderhouden', 'Facilityproject'),
 ]
 FAC_TEGELS = [
-  ('verhuizingen', '/img/foto/ph-verhuizingen.jpg', 'Twee eigen verhuiswagens met laadlift.'),
-  ('kabelmanagement', '/img/werk/kabelgoot-kabelmanagement.webp', 'Werkplekken opbouwen, kabels wegwerken, bureaus en stoelen beheren.'),
-  ('verlichting', '/img/werk/magazijn-verlichting-hoogwerker-2.webp', 'Van kantoor tot magazijn en straat, met de hoogwerker.'),
+  ('verhuizingen', '/img/team/verhuiswagen-laadlift.webp', 'Twee eigen verhuiswagens met laadlift.'),
+  ('kabelmanagement', '/img/werk/kabelgoot-hd.webp', 'Werkplekken opbouwen, kabels wegwerken, bureaus en stoelen beheren.'),
+  ('verlichting', '/img/werk/magazijn-verlichting-hoogwerker-2-hd.webp', 'Van kantoor tot magazijn en straat, met de hoogwerker.'),
 ]
 
 EXTRA = [
@@ -220,8 +224,8 @@ EXTRA = [
   ('opslag', 'Opslag &amp; voorraadbeheer', 'Opslag en voorraadbeheer', 'Extra dienst'),
 ]
 EXTRA_TEGELS = [
-  ('fietsenbeheer', '/img/foto/ph-fietsen.jpg', 'Met een echte fietsenmaker in dienst.'),
-  ('opslag', '/img/werk/magazijn-verlichting-hoogwerker-1.webp', '300 palletplaatsen en een digitale inventaris.'),
+  ('fietsenbeheer', '/img/team/fietsen-aanhanger.webp', 'Met een echte fietsenmaker in dienst.'),
+  ('opslag', '/img/team/opslag-rekken.webp', '300 palletplaatsen en een digitale inventaris.'),
 ]
 
 def extra_html():
@@ -237,11 +241,11 @@ def takken_html():
 def pijlers_html():
     return '''<div class="pijlers">
       <a class="pijler" href="/servicetechniekers/">
-        <img src="/img/werk/werkstation-kabelmanagement-1.webp" alt="" loading="lazy" width="440" height="591">
+        <img src="/img/werk/werkstation-kabelmanagement-1-hd.webp" alt="" loading="lazy" width="440" height="591">
         <div class="in"><p class="label">Pijler 1</p><h3>Servicetechniekers</h3><p>Elektriciens en mechaniciens die wij voor langere tijd uitlenen aan je bedrijf, voor lange projecten.</p><span class="meer">Meer over servicetechniekers</span></div>
       </a>
       <a class="pijler" href="/facilityprojecten/">
-        <img src="/img/werk/kabelgoot-kabelmanagement.webp" alt="" loading="lazy" width="441" height="585">
+        <img src="/img/werk/kabelgoot-hd.webp" alt="" loading="lazy" width="441" height="585">
         <div class="in"><p class="label">Pijler 2</p><h3>Facilityprojecten</h3><p>Verhuizingen en logistiek, kabelmanagement en werkplekken, verlichting. Enkel voor langere of grotere opdrachten.</p><span class="meer">Meer over facilityprojecten</span></div>
       </a>
     </div>'''
@@ -264,6 +268,10 @@ FAQ_DIENSTEN = [
   ('Hoe snel krijg ik antwoord?', 'Contacteer onze servicecoördinator. Wij zorgen voor een reactie binnen 24 uur.'),
 ]
 
+TEAM_HOME = [('/img/team/team-lunch.webp', 'Het team van Geert Vos samen aan tafel'),
+  ('/img/team/team-gang.webp', 'Collega\'s van Geert Vos onderweg naar een opdracht'),
+  ('/img/team/team-kerst.webp', 'Collega\'s van Geert Vos bij een evenement')]
+
 # ---------------------------------------------------------------- HOME
 pages['index'] = dict(
   title='Servicetechniekers en facilityprojecten | BV Geert Vos, Meerhout',
@@ -271,7 +279,7 @@ pages['index'] = dict(
   extra='''<script type="application/ld+json">
 {"@context":"https://schema.org","@type":"LocalBusiness","name":"BV Geert Vos","url":"https://geertvos.be/","logo":"https://geertvos.be/img/logo.svg","vatID":"BE0862515981",
 "address":{"@type":"PostalAddress","streetAddress":"Bevrijdingslaan 256","postalCode":"2450","addressLocality":"Meerhout","addressRegion":"Antwerpen","addressCountry":"BE"},"foundingDate":"1996",
-"areaServed":{"@type":"Place","name":"Limburg en de Kempen, België"},"email":"lorenzo.sterckx@electro-geertvos.be","contactPoint":[{"@type":"ContactPoint","telephone":"+32495460646","contactType":"servicetechniekers","areaServed":"BE","availableLanguage":"nl"},{"@type":"ContactPoint","telephone":"+32477416045","contactType":"projecten","areaServed":"BE","availableLanguage":"nl"}],"image":"https://geertvos.be/img/og.jpg",
+"areaServed":{"@type":"Place","name":"Limburg en de Kempen, België"},"email":"lorenzo.sterckx@electro-geertvos.be","contactPoint":[{"@type":"ContactPoint","telephone":"+32495460646","contactType":"servicetechniekers","areaServed":"BE","availableLanguage":"nl"},{"@type":"ContactPoint","telephone":"+32477416045","contactType":"projecten","areaServed":"BE","availableLanguage":"nl"}],"image":"https://geertvos.be/img/og-team.jpg",
 "knowsAbout":["servicetechniekers","elektriciens","mechaniciens","facilityprojecten","interne verhuizingen","kabelmanagement","werkplekinrichting","verlichting"]}
 </script>''',
   body=f'''
@@ -343,7 +351,7 @@ pages['index'] = dict(
       <li><time>1996</time><p>Geert Vos start als contractor bij Nike. De eerste opdracht: een deur en een deurklink herstellen.</p></li>
       <li><time>De jaren erna</time><p>Lampen vervangen, meetings klaarzetten met tafels, stoelen, beamers en geluid. Het takenpakket en het team groeien mee.</p></li>
       <li><time>Vandaag</time><p>Elektrische bureaus, meubilair, interne verhuizingen en events. De beamers zijn grote mobiele schermen geworden.</p></li>
-      <li><time>2024</time><p>Elektriciens en mechaniciens worden ook bij andere klanten ingezet, voor langdurige projecten. De tweede pijler van BV Geert Vos.</p></li>
+      <li><time>2024</time><p>Elektriciens en mechaniciens worden ook bij andere klanten ingezet, voor langdurige projecten. Zo groeit BV Geert Vos verder, naast de werking bij Nike.</p></li>
     </ol>
   </div>
 </section>
@@ -355,6 +363,7 @@ pages['index'] = dict(
       <h2>Een hecht en bereikbaar team.</h2>
       <p class="lead">Dat is de sleutel van BV Geert Vos. Ook voor onze klanten: de verantwoordelijkheid leggen we hoog bij onszelf, en we zijn er wanneer je ons nodig hebt.</p>
     </div>
+    {team_strip(TEAM_HOME)}
     <div class="waarden">
       <div><h3>Hecht en bereikbaar</h3><p>Een jong, hecht team met ervaren teamleads. Je weet bij wie je terecht kunt, en je krijgt binnen 24 uur een reactie.</p></div>
       <div><h3>Verantwoordelijkheid bij ons</h3><p>Onze techniekers werken zelfstandig, met de nodige certificaten, materialen en uitrusting. Wij volgen elke opdracht op tot ze 100% is afgewerkt en de werkplek proper is.</p></div>
@@ -388,7 +397,7 @@ pages['servicetechniekers'] = dict(
       <p style="margin-top:16px">Het is niet zo dat iedereen voor elke klus bij ons terecht kan. Wij gaan op zoek naar langdurige projecten en werven daarvoor zelf het personeel aan. Een korte of eenmalige klus doen we niet, een langlopend project bouwen we graag met je mee.</p>
       <p>Naar personeel zijn we dan ook steeds op zoek. Ben je zelf technieker? Bekijk onze <a href="/vacatures/">vacatures</a>.</p>
     </div>
-    {foto('/img/werk/werkstation-kabelmanagement-2.webp', 'Kabelmanagement aan een werkstation door Geert Vos')}
+    {foto('/img/werk/werkstation-kabelmanagement-2-hd.webp', 'Kabelmanagement aan een werkstation door Geert Vos')}
   </div>
 </section>
 <section class="sec-paper">
@@ -402,7 +411,7 @@ pages['servicetechniekers'] = dict(
 </section>
 <section>
   <div class="wrap twee">
-    {foto('/img/werk/lichtmast-verplaatsen-heftruck.webp', 'Lichtmast verplaatsen met de heftruck', 'foto-hoog')}
+    {foto('/img/werk/lichtmast-heftruck-hd.webp', 'Lichtmast verplaatsen met de heftruck', 'foto-hoog')}
     <div>
       <p class="label">Wat je mag verwachten</p>
       <h2>Zelfstandig, met opvolging.</h2>
@@ -417,6 +426,14 @@ pages['servicetechniekers'] = dict(
   </div>
 </section>
 <section class="sec-paper">
+  <div class="wrap">
+    <div class="sec-kop"><p class="label">Werk in beeld</p><h2>Onze techniekers aan het werk.</h2></div>
+    <div class="galerij galerij-4">
+      {fig('/img/werk/straatverlichting-hoogwerker-4-hd.webp', 'Technieker aan het werk in de hoogwerker')}{fig('/img/werk/straatverlichting-hoogwerker-5-hd.webp', 'Verlichting vervangen met de hoogwerker')}{fig('/img/werk/magazijn-verlichting-hoogwerker-1-hd.webp', 'Verlichting vervangen tussen magazijnstellingen')}{fig('/img/werk/kabelgoot-hd.webp', 'Kabelmanagement in een magazijn')}
+    </div>
+  </div>
+</section>
+<section>
   <div class="wrap">
     <div class="sec-kop"><p class="label">Zo gaat het</p><h2>In drie stappen aan de slag.</h2></div>
     <ol class="stappen">
@@ -514,7 +531,7 @@ pages['elektriciens'] = techniek_pagina('Elektriciens', 'elektricien',
         ('Lichtmasten en straatverlichting', 'Mobiele lichtmasten verplaatsen en verhuizen, straatverlichting vervangen met de hoogwerker.')]),
   punten=['De nodige certificaten voor het werk dat je vraagt', 'Eigen materiaal en uitrusting, klaar om te starten', 'Zelfstandig werken, met opvolging door een ervaren teamlead', 'Een werkplek die proper en ordelijk achterblijft', 'Vriendelijk, flexibel en met een positieve ingesteldheid'],
   faq=FAQ_ELEK,
-  fotosrc='/img/werk/werkstation-kabelmanagement-2.webp', foto1='Kabelmanagement aan een werkstation door Geert Vos', foto2='/img/werk/straatverlichting-hoogwerker-1.webp|Straatverlichting vervangen met de hoogwerker')
+  fotosrc='/img/werk/werkstation-kabelmanagement-2-hd.webp', foto1='Kabelmanagement aan een werkstation door Geert Vos', foto2='/img/werk/straatverlichting-hoogwerker-1-hd.webp|Straatverlichting vervangen met de hoogwerker')
 
 pages['mechaniciens'] = techniek_pagina('Mechaniciens', 'mechanicien',
   extra=schema('mechaniciens', 'Mechaniciens', ('Mechaniciens', 'Mechaniciens en onderhoudstechniekers die voor langere periodes bij je bedrijf werken, met certificaten, materiaal en uitrusting.'), FAQ_MECH),
@@ -531,7 +548,7 @@ pages['mechaniciens'] = techniek_pagina('Mechaniciens', 'mechanicien',
         ('Fietsen en materieel', 'Beheer en onderhoud van een fietsenvloot door een echte fietsenmaker; beheer van magazijn en voorraad.')]),
   punten=['De nodige certificaten voor het werk dat je vraagt', 'Eigen gereedschap en uitrusting, klaar om te starten', 'Zelfstandig werken, met opvolging door een ervaren teamlead', 'Een werkplek die proper en ordelijk achterblijft', 'Vriendelijk, flexibel en met een positieve ingesteldheid'],
   faq=FAQ_MECH,
-  fotosrc='/img/werk/lichtmast-verplaatsen-heftruck.webp', foto1='Lichtmast verplaatsen met de heftruck', foto2='/img/werk/lichtmasten-op-vrachtwagen.webp|Lichtmasten geladen op de vrachtwagen')
+  fotosrc='/img/werk/lichtmast-heftruck-hd.webp', foto1='Lichtmast verplaatsen met de heftruck', foto2='/img/team/team-keuken-2.webp|Collega\'s monteren keukenkasten met een ladder')
 
 
 def dienst_pagina(slug, naam, h1, label, title, desc, lead, intro, werk, punten, faq, fotosrc, alt, foto2, galerij='', extra=False):
@@ -591,6 +608,15 @@ def dienst_pagina(slug, naam, h1, label, title, desc, lead, intro, werk, punten,
 </main>
 ''' + CTA)
 
+GAL_VERHUIS = '''<section>
+  <div class="wrap">
+    <div class="sec-kop"><p class="label">Werk in beeld</p><h2>Zo ziet een project eruit.</h2></div>
+    <div class="galerij galerij-4">
+      ''' + fig('/img/team/team-keuken-1.webp', 'Collega\'s bouwen een keuken op in een kantoorruimte') + fig('/img/team/team-keuken-2.webp', 'Kasten monteren met de ladder') + fig('/img/team/luidspreker-meeting.webp', 'Een mobiele geluidsinstallatie klaarzetten voor een meeting') + fig('/img/team/team-gang.webp', 'Ons team onderweg naar een opdracht') + '''
+    </div>
+  </div>
+</section>
+'''
 # --- 1 Verhuizingen
 pages['verhuizingen'] = dienst_pagina('verhuizingen', DIENSTEN[0][1], DIENSTEN[0][2], DIENSTEN[0][3],
   title='Interne verhuizingen en logistiek | BV Geert Vos, Meerhout',
@@ -612,8 +638,8 @@ pages['verhuizingen'] = dienst_pagina('verhuizingen', DIENSTEN[0][1], DIENSTEN[0
     ('Hoe snel kunnen jullie een verhuisproject inplannen?', 'Dat hangt af van de omvang. Contacteer onze servicecoördinator: die bekijkt met je wat er moet gebeuren en wanneer we de ploeg en de wagens kunnen inzetten. Je krijgt binnen 24 uur een reactie.'),
     ('Wat als er iets beschadigd raakt?', 'Daarom werken we met laadliften, ervaren mensen en een teamlead die opvolgt. Een opdracht is voor ons pas klaar als ze 100% correct is afgewerkt.'),
   ],
-  fotosrc='/img/foto/ph-verhuizingen.jpg', alt='Twee medewerkers van Geert Vos dragen een kast bij een interne verhuizing',
-  foto2='/img/werk/lichtmasten-op-vrachtwagen.webp|Lichtmasten geladen op de vrachtwagen voor transport')
+  fotosrc='/img/team/verhuiswagen-laadlift.webp', alt='Verhuiswagen met laadlift van Geert Vos',
+  foto2='/img/werk/lichtmast-heftruck-hd.webp|Mobiele lichtmast verplaatsen met de heftruck', galerij=GAL_VERHUIS)
 
 # --- 2 Kabelmanagement
 GAL_KABEL = '''<section>
@@ -649,15 +675,15 @@ pages['kabelmanagement'] = dienst_pagina('kabelmanagement', DIENSTEN[1][1], DIEN
     ('Waarom is kabelmanagement belangrijk?', 'Losse of geplette kabels raken beschadigd en kunnen uitbranden. Netjes weggewerkte kabels zijn veiliger, gaan langer mee en zijn makkelijker aan te passen.'),
     ('Kunnen jullie een hele afdeling inrichten?', 'Ja. Samen met onze verhuisploeg en onze elektriciens richten we complete afdelingen in, van meubilair tot bekabeling.'),
   ],
-  fotosrc='/img/werk/kabelgoot-kabelmanagement.webp', alt='Kabelgoot met netjes weggewerkte kabels aan een reeks werkstations',
-  foto2='/img/werk/werkstation-kabelmanagement-2.webp|Afgewerkt kabelmanagement aan een werkstation', galerij=GAL_KABEL)
+  fotosrc='/img/werk/kabelgoot-magazijn-hd.webp', alt='Kabelgoten met netjes weggewerkte kabels in een magazijn',
+  foto2='/img/werk/werkstation-kabelmanagement-2-hd.webp|Afgewerkt kabelmanagement aan een werkstation', galerij=GAL_KABEL)
 
 # --- 3 Verlichting
 GAL_LICHT = '''<section>
   <div class="wrap">
     <div class="sec-kop"><p class="label">Werk in beeld</p><h2>Van magazijn tot straat.</h2></div>
     <div class="galerij galerij-4">
-      ''' + fig('/img/werk/magazijn-verlichting-hoogwerker-1.webp', 'Verlichting vervangen tussen magazijnstellingen met de hoogwerker') + fig('/img/werk/magazijn-verlichting-hoogwerker-2.webp', 'Verlichting vervangen in een magazijn') + fig('/img/werk/straatverlichting-hoogwerker-1.webp', 'Straatverlichting vervangen met de hoogwerker') + fig('/img/werk/lichtmast-verplaatsen-heftruck.webp', 'Mobiele lichtmast verplaatsen met de heftruck') + '''
+      ''' + fig('/img/werk/magazijn-verlichting-hoogwerker-1-hd.webp', 'Verlichting vervangen tussen magazijnstellingen met de hoogwerker') + fig('/img/werk/magazijn-verlichting-hoogwerker-2-hd.webp', 'Verlichting vervangen in een magazijn') + fig('/img/werk/straatverlichting-hoogwerker-1-hd.webp', 'Straatverlichting vervangen met de hoogwerker') + fig('/img/werk/straatverlichting-hoogwerker-3-hd.webp', 'Onze bestelwagen en hoogwerker op een parking') + fig('/img/werk/straatverlichting-hoogwerker-4-hd.webp', 'Technieker in de korf van de hoogwerker') + fig('/img/werk/straatverlichting-hoogwerker-5-hd.webp', 'Lamp vervangen op grote hoogte') + fig('/img/werk/straatverlichting-hoogwerker-2-hd.webp', 'Straatlamp vervangen met de hoogwerker') + fig('/img/werk/lichtmast-heftruck-hd.webp', 'Mobiele lichtmast verplaatsen met de heftruck') + '''
     </div>
   </div>
 </section>
@@ -682,8 +708,8 @@ pages['verlichting'] = dienst_pagina('verlichting', DIENSTEN[2][1], DIENSTEN[2][
     ('Wie voert het werk uit?', 'Onze eigen elektriciens, met de certificaten, het materiaal en de uitrusting die erbij horen.'),
     ('Verplaatsen jullie ook lichtmasten?', 'Ja. Mobiele lichtmasten verplaatsen en verhuizen we met de heftruck en onze eigen wagens.'),
   ],
-  fotosrc='/img/werk/magazijn-verlichting-hoogwerker-2.webp', alt='Verlichting vervangen in een magazijn met de hoogwerker',
-  foto2='/img/werk/straatverlichting-hoogwerker-2.webp|Straatverlichting vervangen met de hoogwerker', galerij=GAL_LICHT)
+  fotosrc='/img/werk/magazijn-verlichting-hoogwerker-2-hd.webp', alt='Verlichting vervangen in een magazijn met de hoogwerker',
+  foto2='/img/werk/straatverlichting-hoogwerker-2-hd.webp|Straatverlichting vervangen met de hoogwerker', galerij=GAL_LICHT)
 
 
 # --- 4 Fietsenbeheer
@@ -706,8 +732,8 @@ pages['fietsenbeheer'] = dienst_pagina('fietsenbeheer', EXTRA[0][1], EXTRA[0][2]
     ('Hebben jullie onderdelen op voorraad?', 'Ja. Onderdelen en reservefietsen liggen in ons magazijn en worden bijgehouden in onze digitale inventaris.'),
     ('Kunnen jullie starten met een bestaande vloot?', 'Zeker. We beginnen met een nazicht van alle fietsen en een overzicht van wat er moet gebeuren.'),
   ],
-  fotosrc='/img/foto/ph-fietsen.jpg', alt='Rij bedrijfsfietsen in beheer bij Geert Vos',
-  foto2='Foto volgt: onze fietsenmaker aan het werk', extra=True)
+  fotosrc='/img/team/fietsen-aanhanger.webp', alt='Bedrijfsfietsen op een aanhangwagen naast een bestelwagen',
+  foto2='/img/team/fietsen-opslag.webp|Fietsen en materiaal in onze opslagruimte', extra=True)
 
 # --- 5 Opslag
 pages['opslag'] = dienst_pagina('opslag', EXTRA[1][1], EXTRA[1][2], EXTRA[1][3],
@@ -729,8 +755,8 @@ pages['opslag'] = dienst_pagina('opslag', EXTRA[1][1], EXTRA[1][2], EXTRA[1][3],
     ('Halen en brengen jullie ook?', 'Ja, met onze eigen verhuiswagens met laadlift.'),
     ('Kunnen jullie tijdelijke opslag doen tijdens een verhuizing?', 'Ja. Dat combineren we vaak: meubilair tijdelijk bij ons, en terug op zijn plaats als de nieuwe ruimte klaar is.'),
   ],
-  fotosrc='/img/werk/magazijn-verlichting-hoogwerker-1.webp', alt='Magazijnstellingen met pallets',
-  foto2='Foto volgt: ons eigen magazijn met palletplaatsen', extra=True)
+  fotosrc='/img/team/opslag-rekken.webp', alt='Opslagrekken met pallets, kasten en lockers',
+  foto2='/img/team/fietsen-opslag.webp|Opslagruimte met stellingen, fietsen en materiaal', extra=True)
 
 
 # ---------------------------------------------------------------- FACILITYPROJECTEN (pijler 2)
@@ -748,7 +774,7 @@ pages['facilityprojecten'] = dict(
       <p style="margin-top:16px">Een grote interne verhuizing, een reeks werkplekken die ingericht moeten worden, verlichting die in een heel gebouw of magazijn wordt vervangen: zulke projecten plannen we met een vast team en een ervaren teamlead die opvolgt.</p>
       <p>Een hecht en bereikbaar team, en de verantwoordelijkheid hoog bij onszelf: zo willen we werken voor onze klanten.</p>
     </div>
-    {foto('/img/foto/ph-verhuizingen.jpg', 'Medewerkers van Geert Vos aan het werk', 'foto-hoog')}
+    {foto('/img/team/team-keuken-1.webp', 'Medewerkers bouwen een keuken op in een kantoorruimte', 'foto-hoog')}
   </div>
 </section>
 <section class="sec-paper">
@@ -767,7 +793,7 @@ pages['facilityprojecten'] = dict(
       <p>{NIKE_NOOT}</p>
       <p style="margin-top:16px"><a class="btn btn-lijn" href="/ons-verhaal/">Lees ons verhaal</a></p>
     </div>
-    {foto('/img/werk/magazijn-verlichting-hoogwerker-1.webp', 'Verlichting vervangen tussen magazijnstellingen met de hoogwerker', 'foto-hoog')}
+    {foto('/img/team/team-gang.webp', 'Ons team onderweg naar een opdracht', 'foto-hoog')}
   </div>
 </section>
 ''' + faq_blok(FAQ_FAC) + '</main>\n' + CTA)
@@ -817,7 +843,7 @@ pages['diensten'] = dict(
       <p style="margin-top:16px">{NIKE_NOOT}</p>
       <p style="margin-top:16px"><a class="btn btn-lijn" href="/ons-verhaal/">Lees ons verhaal</a></p>
     </div>
-    {foto('/img/foto/ph-verhuizingen.jpg', 'Medewerkers van Geert Vos aan het werk', 'foto-hoog')}
+    {foto('/img/team/team-gang.webp', 'Ons team onderweg naar een opdracht', 'foto-hoog')}
   </div>
 </section>
 ''' + faq_blok(FAQ_DIENSTEN, paper=False) + '</main>\n' + CTA)
@@ -837,7 +863,7 @@ pages['ons-verhaal'] = dict(
       <p style="margin-top:16px">In het begin ging het onder andere om het vervangen van lampen en het klaarzetten van meetings met tafels, stoelen, beamers en geluidsinstallaties. Doorheen de jaren kregen we steeds meer verantwoordelijkheden, en groeide zowel het takenpakket als ons team.</p>
       <p>Vandaag beheren en onderhouden we onder andere elektrische bureaus, bureaustoelen en een groot deel van het meubilair in breakrooms en restaurants. We ondersteunen nog steeds meetings en evenementen. De vroegere beamers hebben ondertussen plaatsgemaakt voor grote mobiele schermen.</p>
     </div>
-    {foto('/img/foto/ph-verhuizingen.jpg', 'Medewerkers van Geert Vos aan het werk', 'foto-hoog')}
+    {foto('/img/team/team-gang.webp', 'Ons team onderweg naar een opdracht', 'foto-hoog')}
   </div>
 </section>
 <section class="sec-paper">
@@ -873,9 +899,9 @@ pages['ons-verhaal'] = dict(
       <div><h3>Vriendelijk, flexibel, positief</h3><p>Onze manier van werken. Daardoor vertrouwen klanten ons, en groeien samenwerkingen uit tot vele jaren, niet enkel weken of maanden.</p></div>
     </div>
     <div class="drie" style="margin-top:56px">
-      {ph('Foto volgt: het team')}
-      {ph('Foto volgt: bestelwagens en verhuiswagens')}
-      {ph('Foto volgt: het magazijn')}
+      {foto('/img/team/team-lunch.webp', 'Het team van Geert Vos samen aan tafel')}
+      {foto('/img/team/verhuiswagen-laadlift.webp', 'Verhuiswagen met laadlift', 'foto-truck')}
+      {foto('/img/team/opslag-rekken.webp', 'Ons magazijn met opslagrekken')}
     </div>
   </div>
 </section>
@@ -885,6 +911,8 @@ pages['ons-verhaal'] = dict(
 
 
 # ---------------------------------------------------------------- VACATURES
+TEAM_VAC = [('/img/team/team-lunch.webp', 'Het team van Geert Vos samen aan tafel'),
+  ('/img/team/team-kerst.webp', 'Collega\'s van Geert Vos bij een evenement')]
 VACATURE_JSON = json.dumps({
   "@context": "https://schema.org", "@type": "JobPosting",
   "title": "Service Technieker",
@@ -912,7 +940,7 @@ pages['vacatures'] = dict(
       <p style="margin-top:16px">We zijn een familiebedrijf met een fijn team, korte lijnen en een leuke sfeer. Bij ons telt kwaliteit boven kwantiteit.</p>
       <p style="margin-top:24px"><a class="btn btn-geel" href="#solliciteren">Solliciteer nu</a> <a class="btn btn-lijn tel" href="tel:{TEL_TECH}" style="margin-left:8px">Liever bellen? {TEL_TECH_TXT}</a></p>
     </div>
-    {foto('/img/werk/lichtmast-verplaatsen-heftruck.webp', 'Onze techniekers aan het werk met de heftruck', 'foto-hoog')}
+    {foto('/img/team/team-gang.webp', 'Ons team onderweg naar een opdracht', 'foto-hoog')}
   </div>
 </section>
 
@@ -967,6 +995,7 @@ pages['vacatures'] = dict(
 <section class="sec-paper">
   <div class="wrap">
     <div class="sec-kop"><p class="label">Waarom bij ons</p><h2>Werken bij een familiebedrijf.</h2></div>
+    {team_strip(TEAM_VAC, 'team-strip-2')}
     <div class="waarden waarden-3">
       <div><h3>Vast contract mogelijk</h3><p>Voltijd in loondienst, met de mogelijkheid op een vast contract.</p></div>
       <div><h3>Korte reistijden</h3><p>Alle opdrachten zitten in de regio, dus je bent snel weer thuis.</p></div>
@@ -983,7 +1012,7 @@ pages['vacatures'] = dict(
     <div>
       <p class="label">Solliciteren</p>
       <h2>Een paar vragen en je cv.</h2>
-      <p class="lead" style="margin-top:16px">Vul het formulier in en voeg je cv toe. We antwoorden persoonlijk.</p>
+      <p class="lead" style="margin-top:16px">Vul het formulier in en voeg je cv toe, of typ je werkervaring uit. Een motivatiebrief is niet nodig. We antwoorden persoonlijk.</p>
       <p style="margin-top:16px">Liever bellen? Bel ons op <a class="tel" href="tel:{TEL_TECH}">{TEL_TECH_TXT}</a>.</p>
     </div>
     <form data-gv action="https://formsubmit.co/{MAIL}" method="POST" enctype="multipart/form-data">
@@ -1018,8 +1047,14 @@ pages['vacatures'] = dict(
           <select id="s-ploeg" name="Ploegen"><option>Ja</option><option>Nee</option></select></div>
         <div class="veld"><label for="s-vanaf">Beschikbaar vanaf</label><input id="s-vanaf" name="Beschikbaar vanaf" placeholder="bv. direct, of 1 november"></div>
       </div>
-      <div class="veld"><label for="s-bericht">Wil je nog iets kwijt?</label><textarea id="s-bericht" name="Bericht" placeholder="Waar je graag aan werkt, wat je zoekt"></textarea></div>
-      <div class="veld"><label for="s-cv">Je cv (pdf of Word)</label><input id="s-cv" type="file" name="attachment" accept=".pdf,.doc,.docx"></div>
+      <div class="veld cv-blok">
+        <span class="veld-kop">Je cv of je ervaring</span>
+        <p class="veld-uitleg">Voeg je cv toe. Heb je geen cv? Typ dan hieronder gewoon je werkervaring uit. Eén van de twee is genoeg, een motivatiebrief is niet nodig.</p>
+        <label class="cv-upload" for="s-cv"><span class="cv-titel">Upload je cv</span><span class="cv-sub">Pdf of Word</span><input id="s-cv" type="file" name="attachment" accept=".pdf,.doc,.docx"></label>
+        <label for="s-ervaring-tekst">Geen cv? Typ je werkervaring uit</label>
+        <textarea id="s-ervaring-tekst" name="Werkervaring" data-of-cv placeholder="Bij welke bedrijven werkte je, van wanneer tot wanneer, en wat deed je daar? Aan welke machines en installaties heb je gewerkt?"></textarea>
+      </div>
+      <p class="form-fout" role="alert" hidden>Voeg je cv toe, of typ je werkervaring uit. Eén van de twee is nodig.</p>
       <div><button class="btn btn-geel" type="submit">Verstuur sollicitatie</button></div>
       <p class="form-noot">We gebruiken je gegevens en cv alleen voor deze sollicitatie. Zie ons <a href="/privacybeleid/">privacybeleid</a>.</p>
     </form>
