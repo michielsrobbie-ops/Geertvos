@@ -4,7 +4,7 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, 'site') if os.path.isdir(os.path.join(HERE, 'site')) else os.path.dirname(HERE)
 DOMAIN = 'https://geertvos.be'
-V = '20260925c'         # versie voor css/js — ophogen bij elke wijziging
+V = '20260925d'         # versie voor css/js — ophogen bij elke wijziging
 # Nummers bevestigd door de klant (25 sept). Geen namen op de site, wel waarvoor je welk nummer belt.
 TEL_TECH = '+32495460646'       # servicetechniekers (Lorenzo)
 TEL_PROJ = '+32477416045'       # facilityprojecten (Pieter-Jan)
@@ -108,7 +108,7 @@ CTA = f'''<div class="stroom"></div>
     <div class="knoppen">
       <a class="btn btn-geel" href="/contact/">Contact</a>
       <a class="btn btn-licht tel-knop" href="tel:{TEL_TECH}"><small>Servicetechniekers</small>{TEL_TECH_TXT}</a>
-      <a class="btn btn-licht tel-knop" href="tel:{TEL_PROJ}"><small>Facilityprojecten</small>{TEL_PROJ_TXT}</a>
+      <a class="btn btn-licht tel-knop" href="tel:{TEL_PROJ}"><small>Projecten</small>{TEL_PROJ_TXT}</a>
     </div>
   </div>
 </div>
@@ -147,7 +147,7 @@ FOOT = f'''<footer class="site-foot">
       <p class="foot-kop">Contact</p>
       <address>BV Geert Vos<br>Bevrijdingslaan 256<br>2450 Meerhout, België<br>
       Servicetechniekers: <a href="tel:{TEL_TECH}">{TEL_TECH_TXT}</a><br>
-      Facilityprojecten: <a href="tel:{TEL_PROJ}">{TEL_PROJ_TXT}</a><br>
+      Projecten: <a href="tel:{TEL_PROJ}">{TEL_PROJ_TXT}</a><br>
       <a href="mailto:{MAIL}">{MAIL}</a></address>
     </div>
   </div>
@@ -271,7 +271,7 @@ pages['index'] = dict(
   extra='''<script type="application/ld+json">
 {"@context":"https://schema.org","@type":"LocalBusiness","name":"BV Geert Vos","url":"https://geertvos.be/","logo":"https://geertvos.be/img/logo.svg","vatID":"BE0862515981",
 "address":{"@type":"PostalAddress","streetAddress":"Bevrijdingslaan 256","postalCode":"2450","addressLocality":"Meerhout","addressRegion":"Antwerpen","addressCountry":"BE"},"foundingDate":"1996",
-"areaServed":{"@type":"Place","name":"Limburg en de Kempen, België"},"email":"lorenzo.sterckx@electro-geertvos.be","contactPoint":[{"@type":"ContactPoint","telephone":"+32495460646","contactType":"servicetechniekers","areaServed":"BE","availableLanguage":"nl"},{"@type":"ContactPoint","telephone":"+32477416045","contactType":"facilityprojecten","areaServed":"BE","availableLanguage":"nl"}],"image":"https://geertvos.be/img/og.jpg",
+"areaServed":{"@type":"Place","name":"Limburg en de Kempen, België"},"email":"lorenzo.sterckx@electro-geertvos.be","contactPoint":[{"@type":"ContactPoint","telephone":"+32495460646","contactType":"servicetechniekers","areaServed":"BE","availableLanguage":"nl"},{"@type":"ContactPoint","telephone":"+32477416045","contactType":"projecten","areaServed":"BE","availableLanguage":"nl"}],"image":"https://geertvos.be/img/og.jpg",
 "knowsAbout":["servicetechniekers","elektriciens","mechaniciens","facilityprojecten","interne verhuizingen","kabelmanagement","werkplekinrichting","verlichting"]}
 </script>''',
   body=f'''
@@ -976,7 +976,7 @@ pages['contact'] = dict(
         <strong>Bel ons</strong>
         <p class="rol">Voor servicetechniekers en vacatures</p>
         <a class="tel" href="tel:{TEL_TECH}">{TEL_TECH_TXT}</a>
-        <p class="rol" style="margin-top:20px">Voor facilityprojecten</p>
+        <p class="rol" style="margin-top:20px">Voor alle projecten</p>
         <a class="tel" href="tel:{TEL_PROJ}">{TEL_PROJ_TXT}</a>
       </div>
       <h2 style="margin-top:40px;font-size:26px">BV Geert Vos</h2>
@@ -1017,7 +1017,7 @@ pages['bedankt'] = dict(
   desc='Je bericht is verstuurd. Wij reageren binnen 24 uur.',
   extra='<meta name="robots" content="noindex">',
   body=kop('Contact', 'Bedankt', 'Je bericht is aangekomen. Wij reageren binnen 24 uur.', 'Contact') + f'''
-<main id="inhoud"><section><div class="wrap"><p class="lead">Dringend? Bel voor servicetechniekers <a class="tel" href="tel:{TEL_TECH}">{TEL_TECH_TXT}</a> of voor facilityprojecten <a class="tel" href="tel:{TEL_PROJ}">{TEL_PROJ_TXT}</a>.</p><p style="margin-top:24px"><a class="btn btn-ink" href="/">Terug naar de startpagina</a></p></div></section></main>
+<main id="inhoud"><section><div class="wrap"><p class="lead">Dringend? Bel voor servicetechniekers <a class="tel" href="tel:{TEL_TECH}">{TEL_TECH_TXT}</a> of voor projecten <a class="tel" href="tel:{TEL_PROJ}">{TEL_PROJ_TXT}</a>.</p><p style="margin-top:24px"><a class="btn btn-ink" href="/">Terug naar de startpagina</a></p></div></section></main>
 ''')
 
 pages['404'] = dict(

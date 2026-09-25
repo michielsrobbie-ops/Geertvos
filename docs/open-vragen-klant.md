@@ -3,7 +3,7 @@
 Zaken die de site nog nodig heeft of die de klant moet bevestigen. 
 
 ## Aan te leveren
-- ~~Telefoonnummers~~ — bevestigd: servicetechniekers en vacatures +32 495 46 06 46 (Lorenzo), facilityprojecten +32 477 41 60 45 (Pieter-Jan). Geen namen op de site, wel waarvoor je welk nummer belt (`TEL_TECH` / `TEL_PROJ` in gen.py).
+- ~~Telefoonnummers~~ — bevestigd: servicetechniekers en vacatures +32 495 46 06 46 (Lorenzo), alle projecten +32 477 41 60 45 (Pieter-Jan). Geen namen op de site, wel waarvoor je welk nummer belt (`TEL_TECH` / `TEL_PROJ` in gen.py).
 - ~~Definitief e-mailadres~~ — bevestigd: lorenzo.sterckx@electro-geertvos.be (staat in `MAIL` in gen.py).
 - Foto's: de 16 werkfoto's uit "Werkzaamheden Vos.pages" staan in `img/werk/` (webp, ±450×600 px — lage resolutie, prima voor tegels, aan de krappe kant voor grote vlakken) en zijn verwerkt op home, elektriciens, mechaniciens en facility. Nog gewenst, liefst in hoge resolutie: team, bestelwagens en verhuiswagens met laadlift, eigen magazijn/opslag (nu staat er een magazijnfoto van een klant bij 'Opslag'), fietsenmaker aan het werk, ingerichte kantoorwerkplek. De drie bannerfoto's (verhuizing, werkplek, fietsen) staan nog als lage-resolutie uitsnede in `img/foto/`.
 - Logo in hoge resolutie of vector, als dat bestaat. De SVG's in `img/` zijn nagetekend van de lage-resolutie jpg (potrace) en zien er scherp uit, maar een origineel bestand is altijd beter.
