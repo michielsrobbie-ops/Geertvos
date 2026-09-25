@@ -4,7 +4,7 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, 'site') if os.path.isdir(os.path.join(HERE, 'site')) else os.path.dirname(HERE)
 DOMAIN = 'https://geertvos.be'
-V = '20260925'         # versie voor css/js — ophogen bij elke wijziging
+V = '20260925b'         # versie voor css/js — ophogen bij elke wijziging
 TEL_LORENZO = '+32400000000'   # TIJDELIJK — echte nummer Lorenzo invullen
 TEL_PJ = '+32400000001'        # TIJDELIJK — echte nummer Pieter-Jan invullen
 TEL_LORENZO_TXT = '+32 400 00 00 00'
@@ -886,12 +886,11 @@ pages['ons-verhaal'] = dict(
 FUNCTIES = [
   ('Elektricien', 'Servicetechnieker', 'Elektrieker of elektrotechnieker met de nodige certificaten, die zelfstandig kan werken en graag voor langere tijd op één site staat.'),
   ('Mechanicien', 'Servicetechnieker', 'Onderhoudstechnieker of mecanicien die kan monteren, herstellen en onderhouden, en die pas stopt als het écht af is.'),
-  ('Facility-medewerker', 'Facilityprojecten', 'Handige alleskunner voor verhuizingen, werkplekinrichting en verlichting in langere projecten. Rijbewijs is een plus (eigen verhuiswagens).'),
 ]
 pages['vacatures'] = dict(
   extra=schema('vacatures', 'Vacatures'),
-  title='Vacatures: elektricien, mechanicien, facility | BV Geert Vos, Meerhout',
-  desc='Vacatures bij BV Geert Vos in Meerhout: elektricien, mechanicien en facility-medewerker voor langdurige projecten in Limburg en de Kempen. Solliciteer met een paar vragen en je cv.',
+  title='Vacatures: elektricien en mechanicien | BV Geert Vos, Meerhout',
+  desc='Vacatures bij BV Geert Vos in Meerhout: elektricien en mechanicien voor langdurige projecten in Limburg en de Kempen. Solliciteer met een paar vragen en je cv.',
   body=kop('Vacatures', 'Vacatures', 'Wij zoeken techniekers voor langdurige projecten in Limburg en de Kempen. Een hecht en bereikbaar team, vaste klanten, en werk dat pas klaar is als het 100% af is.', 'Vacatures') + f'''
 <main id="inhoud">
 <section>
@@ -940,7 +939,7 @@ pages['vacatures'] = dict(
         <div class="veld"><label for="s-woonplaats">Woonplaats</label><input id="s-woonplaats" name="Woonplaats" required autocomplete="address-level2"></div>
       </div>
       <div class="veld"><label for="s-functie">Functie</label>
-        <select id="s-functie" name="Functie"><option>Elektricien</option><option>Mechanicien</option><option>Facility-medewerker</option><option>Iets anders</option></select></div>
+        <select id="s-functie" name="Functie"><option>Elektricien</option><option>Mechanicien</option><option>Iets anders</option></select></div>
       <div class="veld-2">
         <div class="veld"><label for="s-ervaring">Jaren ervaring in het vak</label>
           <select id="s-ervaring" name="Ervaring"><option>Minder dan 2 jaar</option><option>2 tot 5 jaar</option><option>5 tot 10 jaar</option><option>Meer dan 10 jaar</option></select></div>
