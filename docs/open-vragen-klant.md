@@ -1,9 +1,9 @@
 # Open vragen en aan te leveren — BV Geert Vos
 
-Zaken die de site nog nodig heeft of die de klant moet bevestigen. Tijdelijke waarden in de code: `+32 400 00 00 00` en `+32 400 00 00 01` (`TEL_LORENZO`/`TEL_PJ` in `gen.py`).
+Zaken die de site nog nodig heeft of die de klant moet bevestigen. 
 
 ## Aan te leveren
-- Telefoonnummer Lorenzo en Pieter-Jan → `docs/gen.py` (TEL_LORENZO / TEL_PJ + de _TXT-varianten), daarna `python3 docs/gen.py`. Nu staan er tijdelijke +32 400-nummers in.
+- ~~Telefoonnummers~~ — bevestigd: servicetechniekers en vacatures +32 495 46 06 46 (Lorenzo), facilityprojecten +32 477 41 60 45 (Pieter-Jan). Geen namen op de site, wel waarvoor je welk nummer belt (`TEL_TECH` / `TEL_PROJ` in gen.py).
 - ~~Definitief e-mailadres~~ — bevestigd: lorenzo.sterckx@electro-geertvos.be (staat in `MAIL` in gen.py).
 - Foto's: de 16 werkfoto's uit "Werkzaamheden Vos.pages" staan in `img/werk/` (webp, ±450×600 px — lage resolutie, prima voor tegels, aan de krappe kant voor grote vlakken) en zijn verwerkt op home, elektriciens, mechaniciens en facility. Nog gewenst, liefst in hoge resolutie: team, bestelwagens en verhuiswagens met laadlift, eigen magazijn/opslag (nu staat er een magazijnfoto van een klant bij 'Opslag'), fietsenmaker aan het werk, ingerichte kantoorwerkplek. De drie bannerfoto's (verhuizing, werkplek, fietsen) staan nog als lage-resolutie uitsnede in `img/foto/`.
 - Logo in hoge resolutie of vector, als dat bestaat. De SVG's in `img/` zijn nagetekend van de lage-resolutie jpg (potrace) en zien er scherp uit, maar een origineel bestand is altijd beter.
@@ -42,3 +42,5 @@ Nog te bevestigen of aan te leveren:
 - E-mailadres bevestigd: `lorenzo.sterckx@electro-geertvos.be`. Staat overal (formulieren, privacybeleid, footer, schema). **Na livegang eerste inzending doen**: FormSubmit stuurt eerst een bevestigingsmail naar dit adres, die Lorenzo moet activeren.
 - Fietsenbeheer en opslag zijn een **extra dienst en horen niet bij Nike**. Pagina's staan terug (`/fietsenbeheer/`, `/opslag/`), in het menu onder "Extra diensten" en op de pagina Diensten. Alle verwijzingen naar fietsen/opslag in de Nike-teksten zijn eruit. Let op: de mechaniciens-pagina noemt nog "fietsen nakijken met een eigen fietsenmaker" en "beheer van magazijn en voorraad" in de opsomming van onderhoudswerk; nalezen of dat zo blijft.
 - Aanspreekvorm is nu overal **je** in plaats van u.
+
+- Facility-medewerker is als vacature verwijderd (ze hebben genoeg mensen). Alleen elektricien en mechanicien staan nog open.
