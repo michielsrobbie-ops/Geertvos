@@ -4,7 +4,7 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, 'site') if os.path.isdir(os.path.join(HERE, 'site')) else os.path.dirname(HERE)
 DOMAIN = 'https://geertvos.be'
-V = '20260925d'         # versie voor css/js — ophogen bij elke wijziging
+V = '20260925e'         # versie voor css/js — ophogen bij elke wijziging
 # Nummers bevestigd door de klant (25 sept). Geen namen op de site, wel waarvoor je welk nummer belt.
 TEL_TECH = '+32495460646'       # servicetechniekers (Lorenzo)
 TEL_PROJ = '+32477416045'       # facilityprojecten (Pieter-Jan)
@@ -885,40 +885,99 @@ pages['ons-verhaal'] = dict(
 
 
 # ---------------------------------------------------------------- VACATURES
-FUNCTIES = [
-  ('Elektricien', 'Servicetechnieker', 'Elektrieker of elektrotechnieker met de nodige certificaten, die zelfstandig kan werken en graag voor langere tijd op één site staat.'),
-  ('Mechanicien', 'Servicetechnieker', 'Onderhoudstechnieker of mecanicien die kan monteren, herstellen en onderhouden, en die pas stopt als het écht af is.'),
-]
+VACATURE_JSON = json.dumps({
+  "@context": "https://schema.org", "@type": "JobPosting",
+  "title": "Service Technieker",
+  "description": "Elektromechanisch onderhoud uitvoeren en storingen oplossen aan machines en installaties bij klanten in de regio Lommel - Genk en de Kempen. Voltijd in loondienst, vast contract mogelijk, met bedrijfsbus, GSM en maaltijdcheques. Minimaal 5 jaar aantoonbare ervaring als technieker onderhoud en storingen, VCA en rijbewijs B, bereid om in 2 of 3 ploegen te werken.",
+  "datePosted": "2026-09-25", "employmentType": "FULL_TIME",
+  "hiringOrganization": {"@type": "Organization", "name": "BV Geert Vos", "sameAs": DOMAIN + "/"},
+  "jobLocation": {"@type": "Place", "address": {"@type": "PostalAddress", "addressLocality": "Lommel", "addressRegion": "Limburg", "addressCountry": "BE"}},
+}, ensure_ascii=False)
+
+def kv(k, v, klein):
+    return f'<div><span class="vf-k">{k}</span><strong>{v}</strong><small>{klein}</small></div>'
+
 pages['vacatures'] = dict(
-  extra=schema('vacatures', 'Vacatures'),
-  title='Vacatures: elektricien en mechanicien | BV Geert Vos, Meerhout',
-  desc='Vacatures bij BV Geert Vos in Meerhout: elektricien en mechanicien voor langdurige projecten in Limburg en de Kempen. Solliciteer met een paar vragen en je cv.',
-  body=kop('Vacatures', 'Vacatures', 'Wij zoeken techniekers voor langdurige projecten in Limburg en de Kempen. Een hecht en bereikbaar team, vaste klanten, en werk dat pas klaar is als het 100% af is.', 'Vacatures') + f'''
+  extra=schema('vacatures', 'Vacatures') + f'<script type="application/ld+json">{VACATURE_JSON}</script>\n',
+  title='Vacature Service Technieker | BV Geert Vos, Meerhout',
+  desc='Vacature service technieker in regio Lommel - Genk en de Kempen: elektromechanisch onderhoud en storingen, voltijd in loondienst, met bedrijfsbus en maaltijdcheques. Solliciteer online.',
+  body=kop('Vacatures', 'Vacatures', 'Wij zoeken een service technieker voor onderhoud en storingen aan machines en installaties in regio Lommel - Genk en de Kempen.', 'Vacatures') + f'''
 <main id="inhoud">
 <section>
-  <div class="wrap">
-    <div class="sec-kop">
-      <p class="label">Open vacatures</p>
-      <h2>Waar we naar op zoek zijn.</h2>
-      <p class="lead">Wij zoeken eerst het langdurige project en werven daarna het personeel aan. Daarom zijn we steeds op zoek naar nieuwe collega's. Staat er niets tussen wat past? Solliciteer gerust spontaan.</p>
-    </div>
-    <div class="vacs">
-      {''.join(f'<div class="vac"><p class="label">{soort}</p><h3>{naam}</h3><p>{tekst}</p><a class="btn btn-ink" href="/vacatures/?functie={naam}#solliciteren">Solliciteer als {naam.lower()}</a></div>' for naam, soort, tekst in FUNCTIES)}
-    </div>
-  </div>
-</section>
-<section class="sec-paper">
   <div class="wrap twee">
     <div>
-      <p class="label">Werken bij BV Geert Vos</p>
-      <h2>Vast werk bij vaste klanten.</h2>
-      <p class="lead" style="margin-top:16px">Onze techniekers werken gedurende langere periodes bij dezelfde klant. Geen andere werf elke week, wel een site die je leert kennen en collega's die je kent.</p>
-      <p style="margin-top:16px">We zijn een jong en hecht team, waarin veel collega's ook buiten het werk goed met elkaar overeenkomen. Tegelijk werken we binnen een duidelijke organisatie, met ervaren teamleads die je niet in de steek laten. Orde, stiptheid en kwaliteit zijn belangrijk voor ons, en een vriendelijke, positieve ingesteldheid ook.</p>
-      <p>Sinds 1996 zijn we dagelijks actief bij Nike, met een volledig team. Sinds 2024 groeien we verder met servicetechniekers bij andere bedrijven in Limburg en de Kempen.</p>
+      <p class="label">Open vacature</p>
+      <h2>Service Technieker</h2>
+      <p class="lead" style="margin-top:16px">Je lost storingen op en voert elektromechanisch onderhoud uit aan machines en installaties bij onze klanten in de regio. Veel verschillende opdrachten, veel afwisseling, en werk dat je deels zelf kunt kiezen.</p>
+      <p style="margin-top:16px">We zijn een familiebedrijf met een fijn team, korte lijnen en een leuke sfeer. Bij ons telt kwaliteit boven kwantiteit.</p>
+      <p style="margin-top:24px"><a class="btn btn-geel" href="#solliciteren">Solliciteer nu</a> <a class="btn btn-lijn tel" href="tel:{TEL_TECH}" style="margin-left:8px">Liever bellen? {TEL_TECH_TXT}</a></p>
     </div>
-    {foto('/img/foto/ph-verhuizingen.jpg', 'Twee medewerkers van Geert Vos aan het werk', 'foto-hoog')}
+    {foto('/img/werk/lichtmast-verplaatsen-heftruck.webp', 'Onze techniekers aan het werk met de heftruck', 'foto-hoog')}
   </div>
 </section>
+
+<section class="sec-paper">
+  <div class="wrap">
+    <div class="sec-kop"><p class="label">In het kort</p><h2>Wat, waar en hoe.</h2></div>
+    <div class="vac-feiten">
+      {kv('Locatie', 'Regio Lommel - Genk', 'In Limburg en de Kempen. Je woont op maximaal 45 minuten reistijd.')}
+      {kv('Contract', 'Loondienst', 'Vast contract mogelijk')}
+      {kv('Uren', 'Voltijd', 'In 2 of 3 ploegen')}
+      {kv('Loon', 'Tot € 4.000 bruto', 'Op basis van je ervaring')}
+      {kv('Vervoer', 'Bedrijfsbus mogelijk', 'Bus van de zaak')}
+      {kv("Extra's", 'GSM en maaltijdcheques', 'En modern, goed materieel')}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-kop"><p class="label">Wat ga je doen</p><h2>Veel variatie, elke dag.</h2><p class="lead">Elektromechanisch onderhoud en storingen oplossen aan machines en installaties. Veel verschillende opdrachten, dus geen dag is hetzelfde.</p></div>
+    <ul class="punten" style="max-width:62ch;margin-bottom:64px">
+      <li>Elektromechanisch onderhoud uitvoeren aan machines en installaties</li>
+      <li>Storingen opsporen en oplossen, met schema's als houvast</li>
+      <li>Werken bij onze klanten in de regio, met veel afwisseling in projecten</li>
+    </ul>
+    <div class="sec-kop"><p class="label">Wie zoeken we</p><h2>Ervaring, en de juiste papieren.</h2></div>
+    <div class="inzet">
+      <div>
+        <h3>Dit heb je minimaal</h3>
+        <ul class="punten">
+          <li>5 jaar aantoonbare werkervaring als technieker onderhoud en storingen</li>
+          <li>Bereid om in 2 of 3 ploegen te werken</li>
+          <li>Vloeiend Nederlands, mondeling en schriftelijk</li>
+          <li>Rijbewijs B</li>
+          <li>VCA</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Dit is een pluspunt</h3>
+        <ul class="punten">
+          <li>Diploma elektromechanica, of een richting elektra of mechanica</li>
+          <li>Ruime ervaring met machines en installaties</li>
+          <li>Schema's kunnen lezen en storingen zelfstandig oplossen</li>
+          <li>Rolbrugattest en heftruckattest</li>
+          <li>Elektrische bekwaamheid, een belangrijk extra</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-paper">
+  <div class="wrap">
+    <div class="sec-kop"><p class="label">Waarom bij ons</p><h2>Werken bij een familiebedrijf.</h2></div>
+    <div class="waarden waarden-3">
+      <div><h3>Vast contract mogelijk</h3><p>Voltijd in loondienst, met de mogelijkheid op een vast contract.</p></div>
+      <div><h3>Korte reistijden</h3><p>Alle opdrachten zitten in de regio, dus je bent snel weer thuis.</p></div>
+      <div><h3>Eigen inbreng</h3><p>Je kunt werk kiezen dat bij je past.</p></div>
+      <div><h3>Kwaliteit boven kwantiteit</h3><p>Bij ons telt goed werk meer dan snel werk. Een opdracht is pas klaar als ze 100% af is.</p></div>
+      <div><h3>Fijn team, leuke sfeer</h3><p>Een familiebedrijf met korte lijnen en collega's die ook buiten het werk goed met elkaar overeenkomen.</p></div>
+      <div><h3>Modern materieel</h3><p>Goed en modern materieel, een bedrijfsbus, GSM en maaltijdcheques.</p></div>
+    </div>
+  </div>
+</section>
+
 <section id="solliciteren">
   <div class="wrap twee" style="align-items:start">
     <div>
@@ -928,9 +987,10 @@ pages['vacatures'] = dict(
       <p style="margin-top:16px">Liever bellen? Bel ons op <a class="tel" href="tel:{TEL_TECH}">{TEL_TECH_TXT}</a>.</p>
     </div>
     <form data-gv action="https://formsubmit.co/{MAIL}" method="POST" enctype="multipart/form-data">
-      <input type="hidden" name="_subject" value="Sollicitatie via geertvos.be">
+      <input type="hidden" name="_subject" value="Sollicitatie Service Technieker via geertvos.be">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_next" value="https://geertvos.be/bedankt/">
+      <input type="hidden" name="Vacature" value="Service Technieker">
       <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
       <div class="veld-2">
         <div class="veld"><label for="s-naam">Naam</label><input id="s-naam" name="Naam" required autocomplete="name"></div>
@@ -940,19 +1000,25 @@ pages['vacatures'] = dict(
         <div class="veld"><label for="s-email">E-mail</label><input id="s-email" type="email" name="E-mail" required autocomplete="email"></div>
         <div class="veld"><label for="s-woonplaats">Woonplaats</label><input id="s-woonplaats" name="Woonplaats" required autocomplete="address-level2"></div>
       </div>
-      <div class="veld"><label for="s-functie">Functie</label>
-        <select id="s-functie" name="Functie"><option>Elektricien</option><option>Mechanicien</option><option>Iets anders</option></select></div>
       <div class="veld-2">
-        <div class="veld"><label for="s-ervaring">Jaren ervaring in het vak</label>
-          <select id="s-ervaring" name="Ervaring"><option>Minder dan 2 jaar</option><option>2 tot 5 jaar</option><option>5 tot 10 jaar</option><option>Meer dan 10 jaar</option></select></div>
+        <div class="veld"><label for="s-diploma">Opleiding of diploma</label><input id="s-diploma" name="Opleiding" placeholder="bv. elektromechanica"></div>
+        <div class="veld"><label for="s-ervaring">Ervaring als onderhoudstechnieker</label>
+          <select id="s-ervaring" name="Ervaring"><option>Minder dan 5 jaar</option><option>5 tot 10 jaar</option><option>Meer dan 10 jaar</option></select></div>
+      </div>
+      <div class="veld"><span class="veld-kop">Wat heb je al?</span>
+        <div class="checks">
+          <label><input type="checkbox" name="Rijbewijs B" value="Ja"> Rijbewijs B</label>
+          <label><input type="checkbox" name="VCA" value="Ja"> VCA</label>
+          <label><input type="checkbox" name="Rolbrugattest" value="Ja"> Rolbrugattest</label>
+          <label><input type="checkbox" name="Heftruckattest" value="Ja"> Heftruckattest</label>
+          <label><input type="checkbox" name="Elektrische bekwaamheid" value="Ja"> Elektrische bekwaamheid</label>
+        </div></div>
+      <div class="veld-2">
+        <div class="veld"><label for="s-ploeg">Bereid om in 2 of 3 ploegen te werken?</label>
+          <select id="s-ploeg" name="Ploegen"><option>Ja</option><option>Nee</option></select></div>
         <div class="veld"><label for="s-vanaf">Beschikbaar vanaf</label><input id="s-vanaf" name="Beschikbaar vanaf" placeholder="bv. direct, of 1 november"></div>
       </div>
-      <div class="veld-2">
-        <div class="veld"><label for="s-cert">Certificaten</label><input id="s-cert" name="Certificaten" placeholder="bv. BA4/BA5, VCA"></div>
-        <div class="veld"><label for="s-rijbewijs">Rijbewijs</label>
-          <select id="s-rijbewijs" name="Rijbewijs"><option>Rijbewijs B</option><option>Rijbewijs C of CE</option><option>Geen rijbewijs</option></select></div>
-      </div>
-      <div class="veld"><label for="s-bericht">Vertel kort iets over jezelf</label><textarea id="s-bericht" name="Bericht" placeholder="Ervaring, waar je graag aan werkt, wat je zoekt"></textarea></div>
+      <div class="veld"><label for="s-bericht">Wil je nog iets kwijt?</label><textarea id="s-bericht" name="Bericht" placeholder="Waar je graag aan werkt, wat je zoekt"></textarea></div>
       <div class="veld"><label for="s-cv">Je cv (pdf of Word)</label><input id="s-cv" type="file" name="attachment" accept=".pdf,.doc,.docx"></div>
       <div><button class="btn btn-geel" type="submit">Verstuur sollicitatie</button></div>
       <p class="form-noot">We gebruiken je gegevens en cv alleen voor deze sollicitatie. Zie ons <a href="/privacybeleid/">privacybeleid</a>.</p>

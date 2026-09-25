@@ -335,13 +335,21 @@ form{display:grid;gap:16px}
 .takken-2{grid-template-columns:repeat(2,minmax(0,1fr));max-width:760px}
 @media(max-width:600px){.takken-2{grid-template-columns:1fr}}
 
-/* Vacatures */
-.vacs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(16px,2.4vw,28px)}
-.vac{display:flex;flex-direction:column;gap:10px;padding:28px;border:1.5px solid var(--line);border-radius:10px;background:var(--wit)}
-.vac h3{font-size:26px}
-.vac p{color:var(--ink-2)}
-.vac .btn{margin-top:auto;align-self:flex-start}
-.vac p:not(.label){margin-bottom:14px}
+/* Vacature */
+.vac-feiten{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.vac-feiten>div{background:var(--wit);border:1px solid var(--line);border-left:4px solid var(--geel);border-radius:10px;padding:18px 22px}
+.vf-k{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--steel);font-weight:600;margin-bottom:4px}
+.vac-feiten strong{display:block;font-size:20px;line-height:1.25;letter-spacing:-.01em}
+.vac-feiten small{display:block;color:var(--ink-2);margin-top:4px;font-size:14.5px;line-height:1.4}
+@media(max-width:900px){.vac-feiten{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.vac-feiten{grid-template-columns:1fr}}
+.waarden.waarden-3,.waarden.waarden-3:has(> :nth-child(4)){grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:820px){.waarden.waarden-3,.waarden.waarden-3:has(> :nth-child(4)){grid-template-columns:1fr}}
+.veld-kop{font-weight:600;font-size:15px}
+.veld .checks{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px}
+.veld .checks label{display:flex;align-items:center;gap:10px;font-weight:500}
+.veld .checks input{width:20px;height:20px;padding:0;accent-color:var(--ink);flex:none}
+@media(max-width:560px){.veld .checks{grid-template-columns:1fr}}
 
 /* Puntenlijst */
 .punten{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:10px}

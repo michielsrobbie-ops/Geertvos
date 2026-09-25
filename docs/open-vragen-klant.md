@@ -32,8 +32,6 @@ Verwerkt: nieuwe hero-titel en -tekst, twee pijlers (servicetechniekers en facil
 
 Nog te bevestigen of aan te leveren:
 - **Foto's**: Lorenzo bezorgt volgende week enkele foto's. Zelfde bestandsnamen houden, of paden aanpassen in gen.py.
-- **Vacatures**: de drie kaarten (elektricien, mechanicien, facility-medewerker) zijn algemene profielen. Echte vacatureteksten uit de campagnes van Robbie/Max invullen (lijst `FUNCTIES` in gen.py).
-- **Sollicitatievragen**: de vragen in het formulier (woonplaats, ervaring, certificaten, rijbewijs, beschikbaar vanaf) zijn een voorstel. Afstemmen met de vragen uit de campagnes.
 - **Cv-upload** via FormSubmit na livegang testen (bijlage en groottelimiet).
 - **Nike** wordt bij naam genoemd (hero-cijfer, verhaal). Lorenzo schreef zelf "Nike of dergelijke", dus bevestigen dat de naam op de site mag.
 - Eerder open en nog steeds: telefoonnummers, e-mailadres, domein/DNS, nalezen van alle teksten.
@@ -43,4 +41,14 @@ Nog te bevestigen of aan te leveren:
 - Fietsenbeheer en opslag zijn een **extra dienst en horen niet bij Nike**. Pagina's staan terug (`/fietsenbeheer/`, `/opslag/`), in het menu onder "Extra diensten" en op de pagina Diensten. Alle verwijzingen naar fietsen/opslag in de Nike-teksten zijn eruit. Let op: de mechaniciens-pagina noemt nog "fietsen nakijken met een eigen fietsenmaker" en "beheer van magazijn en voorraad" in de opsomming van onderhoudswerk; nalezen of dat zo blijft.
 - Aanspreekvorm is nu overal **je** in plaats van u.
 
-- Facility-medewerker is als vacature verwijderd (ze hebben genoeg mensen). Alleen elektricien en mechanicien staan nog open.
+
+## Vacature Service Technieker (25 september 2026)
+De vacaturepagina bevat nu één vacature, Service Technieker, uitgewerkt uit de aangeleverde info (facility-medewerker, elektricien en mechanicien als aparte kaarten zijn weg). Het sollicitatieformulier stelt vragen die bij de eisen passen (woonplaats, opleiding, ervaring, VCA, rijbewijs, rolbrug, heftruck, ploegen, cv). De pagina heeft ook JobPosting-gegevens voor Google for Jobs (`VACATURE_JSON` in gen.py).
+
+Bewust anders dan de aangeleverde tekst, laat Lorenzo nalezen:
+- **Leeftijd (25 tot 50 jaar)** staat er niet op. Een leeftijdsgrens in een openbare vacature is in België verboden (discriminatiewet). Intern screenen mag, publiceren niet.
+- **Loon** staat als "Tot € 4.000 bruto, op basis van je ervaring". Bevestigen dat dit per maand is en of dat zo mag.
+- **Bedrijfswagen "met inbreng"** is weggelaten omdat onduidelijk is wat dat betekent. Er staat "bedrijfsbus mogelijk, bus van de zaak".
+- "Familiebedrijf, fijn team zonder hiërarchie" is omgezet naar "korte lijnen", omdat de rest van de site ervaren teamleads noemt.
+- Foto bij de vacature is tijdelijk (heftruck). Vervangen door een echte foto van een technieker.
+- Sluitingsdatum en het echte plaatsingsdatum voor Google for Jobs invullen zodra bekend.

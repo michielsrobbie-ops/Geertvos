@@ -139,17 +139,6 @@
     range.addEventListener('input', function () { zet(range.value); });
   });
 
-  // Vacatures: functie voorselecteren via ?functie=
-  var functie = document.getElementById('s-functie');
-  if (functie && window.URLSearchParams) {
-    var gekozen = new URLSearchParams(location.search).get('functie');
-    if (gekozen) {
-      for (var i = 0; i < functie.options.length; i++) {
-        if (functie.options[i].value === gekozen) { functie.selectedIndex = i; }
-      }
-    }
-  }
-
   // Formulieren
   var form = document.querySelector('form[data-gv]');
   if (form) {

@@ -10,7 +10,7 @@ Statisch HTML/CSS/JS, zelfde opzet als vandis-website (GitHub → Vercel, `clean
 - `diensten.html` — overzicht van de twee pijlers (menu-item Diensten, dropdown gegroepeerd per pijler)
 - Alle dienstpagina's gebruiken dezelfde template `dienst_pagina()` in gen.py: intro, wat we doen, foto's, wat je mag verwachten, stappen, FAQ met schema, andere diensten. `fietsenbeheer.html` en `opslag.html` zijn **extra diensten** (parameter `extra=True`, menu-kop 'Extra diensten', sectie op diensten.html) en horen niet bij Nike. De oude URL's `/facility-diensten/` en `/werken-bij/` redirecten via vercel.json.
 - Aanspreekvorm is 'je' (Lorenzo, 25 sept). Alle formulieren gaan naar `MAIL` bovenaan gen.py (lorenzo.sterckx@electro-geertvos.be).
-- `vacatures.html` — knop 'Vacatures' in menu en hero: open vacatures (profielkaarten), en sollicitatieformulier met een paar vragen en cv-upload (FormSubmit, `enctype=multipart/form-data`, veldnaam `attachment`). `?functie=Elektricien#solliciteren` selecteert de functie voor (campagnelinks).
+- `vacatures.html` — één vacature (Service Technieker) met kerngegevens, taken, eisen en aanbod, plus sollicitatieformulier met cv-upload (FormSubmit, `enctype=multipart/form-data`, veldnaam `attachment`) en JobPosting-schema. Nieuwe vacature: `VACATURE_JSON` en het blok in gen.py aanpassen.
 - `ons-verhaal.html`, `contact.html`, `bedankt.html` (na formulier), `privacybeleid.html`
 - `css/style.css`, `js/main.js` — bij wijziging de `?v=` versiedatum in alle html-bestanden ophogen
 - `fonts/` — Bricolage Grotesque, zelf gehost, OFL (caveat-*.woff2 is niet meer in gebruik en mag weg). Geen Google Fonts, dus geen cookiebanner nodig.
