@@ -4,7 +4,7 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, 'site') if os.path.isdir(os.path.join(HERE, 'site')) else os.path.dirname(HERE)
 DOMAIN = 'https://geertvos.be'
-V = '20260925f'         # versie voor css/js — ophogen bij elke wijziging
+V = '20261026'         # versie voor css/js — ophogen bij elke wijziging
 # Nummers bevestigd door de klant (25 sept). Geen namen op de site, wel waarvoor je welk nummer belt.
 TEL_TECH = '+32495460646'       # servicetechniekers (Lorenzo)
 TEL_PROJ = '+32477416045'       # facilityprojecten (Pieter-Jan)
@@ -863,7 +863,7 @@ pages['ons-verhaal'] = dict(
       <p style="margin-top:16px">In het begin ging het onder andere om het vervangen van lampen en het klaarzetten van meetings met tafels, stoelen, beamers en geluidsinstallaties. Doorheen de jaren kregen we steeds meer verantwoordelijkheden, en groeide zowel het takenpakket als ons team.</p>
       <p>Vandaag beheren en onderhouden we onder andere elektrische bureaus, bureaustoelen en een groot deel van het meubilair in breakrooms en restaurants. We ondersteunen nog steeds meetings en evenementen. De vroegere beamers hebben ondertussen plaatsgemaakt voor grote mobiele schermen.</p>
     </div>
-    {foto('/img/team/team-gang.webp', 'Ons team onderweg naar een opdracht', 'foto-hoog')}
+    {foto('/img/team/team-verhuiswagen-2.webp', 'Het team van Geert Vos bij de verhuiswagen aan de loods', 'foto-hoog')}
   </div>
 </section>
 <section class="sec-paper">
@@ -887,6 +887,16 @@ pages['ons-verhaal'] = dict(
 </section>
 <section>
   <div class="wrap">
+    <div class="sec-kop"><p class="label">Ons wagenpark</p><h2>Op de baan met eigen wagens.</h2><p class="lead">Elke technieker vertrekt vanuit Meerhout met het juiste materiaal, in een bedrijfswagen van Geert Vos. Zo zijn we snel ter plaatse en herkenbaar bij onze klanten.</p></div>
+    <div class="video-blok">
+      <video controls preload="none" poster="/img/video/wagenpark-poster.jpg" width="1280" height="720">
+        <source src="/img/video/wagenpark.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+<section class="sec-paper">
+  <div class="wrap">
     <div class="sec-kop">
       <p class="label">Wie wij zijn</p>
       <h2>Een hecht en bereikbaar team.</h2>
@@ -900,7 +910,7 @@ pages['ons-verhaal'] = dict(
     </div>
     <div class="drie" style="margin-top:56px">
       {foto('/img/team/team-lunch.webp', 'Het team van Geert Vos samen aan tafel')}
-      {foto('/img/team/verhuiswagen-laadlift.webp', 'Verhuiswagen met laadlift', 'foto-truck')}
+      {foto('/img/team/team-verhuiswagen-1.webp', 'Het team van Geert Vos bij de verhuiswagen')}
       {foto('/img/team/opslag-rekken.webp', 'Ons magazijn met opslagrekken')}
     </div>
   </div>

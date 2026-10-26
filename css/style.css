@@ -449,3 +449,7 @@ form{display:grid;gap:16px}
 .cv-sub{display:block;font-size:14px;color:var(--steel);margin-bottom:4px}
 .veld .cv-upload input{border:0;padding:8px 0 0;background:transparent;box-shadow:none;width:100%}
 .form-fout{margin:0;color:#b3261e;font-weight:600}
+
+/* Video: ons wagenpark */
+.video-blok{border-radius:10px;overflow:hidden;background:var(--paper);aspect-ratio:16/9}
+.video-blok video{width:100%;height:100%;display:block;object-fit:cover}

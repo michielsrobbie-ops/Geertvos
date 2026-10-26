@@ -2,3 +2,6 @@
 .vercel
 img/foto/fotos/
 img/foto/fotos 2/
+img/foto/teamfoto/
+img/video/*.mp4
+!img/video/wagenpark.mp4
